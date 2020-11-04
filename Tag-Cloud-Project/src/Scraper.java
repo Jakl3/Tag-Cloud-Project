@@ -5,18 +5,17 @@ import java.net.*;
 
 public class Scraper  {
 	
-	private static Pattern p = Pattern.compile("(<(.+?)>(.+?)<(.+?)>)");
 	private static String URL;
 	private static String website;
 	
-	public Scraper(String url) throws IOException {
+	public Scraper(String url) throws Exception {
 		this.URL = url;
 		setup();
 	}
 	
-	private void setup() throws IOException {
+	private void setup() throws Exception {
 		try {
-			URL myURL = new URL("http://books.toscrape.com/");
+			URL myURL = new URL(URL);
 			URLConnection site = myURL.openConnection();
 			site.connect();
 			Scanner reader = new Scanner( site.getInputStream() );
@@ -39,8 +38,9 @@ public class Scraper  {
 			System.out.println(sw.toString());
 			throw new IOException("Connection couldn't be opened");
 		}
-		
-		
-		
+	}
+	
+	public String getWebsite() {
+		return website;
 	}
 }
