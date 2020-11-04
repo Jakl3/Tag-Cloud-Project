@@ -6,12 +6,10 @@ public class Test {
 	
 	private static Pattern p = Pattern.compile("(<(.+?)>(.+?)<(.+?)>)");
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		String s = "fsafsafafs<p>this is between the tags<\\p>fsafsafafs<p>fafsfthis is between the tags<\\\\p>fsafsafafs<p>this is behdshdshtween the tags<\\\\p>fsafsafafs<p>this is bggdsetween the tags<\\\\p>";
-		
-		System.out.println(getTagValues(s));
-		
+		Scraper s = new Scraper("http://books.toscrape.com/");
+		System.out.println(s.getWebsite());
 	}
 	
 	private static List<String> getTagValues(final String str) {
