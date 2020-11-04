@@ -5,7 +5,6 @@ import java.net.*;
 
 public class Scraper  {
 	
-	private static Pattern p = Pattern.compile("(<(.+?)>(.+?)<(.+?)>)");
 	private static String URL;
 	private static String website;
 	
