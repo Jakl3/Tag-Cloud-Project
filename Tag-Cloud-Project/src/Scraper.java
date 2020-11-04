@@ -9,12 +9,12 @@ public class Scraper  {
 	private static String URL;
 	private static String website;
 	
-	public Scraper(String url) {
+	public Scraper(String url) throws IOException {
 		this.URL = url;
 		setup();
 	}
 	
-	private void setup() {
+	private void setup() throws IOException {
 		try {
 			URL myURL = new URL("http://books.toscrape.com/");
 			URLConnection site = myURL.openConnection();
@@ -26,18 +26,18 @@ public class Scraper  {
 		catch (MalformedURLException e) {
 			// new URL() failed
 			// ...
-			System.out.println("Malformed URL");
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
 			System.out.println(sw.toString());
+			throw new MalformedURLException("Malformed URL");
 		}
 		catch (IOException e) {
 			// openConnection() failed
 			// ...
-			System.out.println("Connection couldn't be opened");
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
 			System.out.println(sw.toString());
+			throw new IOException("Connection couldn't be opened");
 		}
 		
 		
