@@ -10,5 +10,6 @@ public class Main extends JFrame {
 	}
 	public static void main(String[] args) {
 		Main Cloud = new Main();
+		System.out.println("bruh");
 	}
 }
