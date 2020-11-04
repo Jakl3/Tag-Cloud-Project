@@ -3,23 +3,18 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Test {
-	
-	private static Pattern p = Pattern.compile("(<(.+?)>(.+?)<(.+?)>)");
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		Scraper s = new Scraper("http://books.toscrape.com/");
-		System.out.println(s.getWebsite());
+		Scanner reader = new Scanner( System.in );
+		String s = ( reader.useDelimiter( "\\Z" ).next() );
+		reader.close();
+		System.out.println(s);
+		Data d = new Data(s);
+		System.out.println(d.getTags());
+		System.out.println(d.getTags().size());
 	}
 	
-	private static List<String> getTagValues(final String str) {
-	    final List<String> tagValues = new ArrayList<String>();
-	    final Matcher matcher = p.matcher(str);
-	    while (matcher.find()) {
-	        tagValues.add(matcher.group(1));
-	    }
-	    return tagValues;
-	}
 	
 	private class Word {
 		int weight;
