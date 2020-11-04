@@ -6,13 +6,13 @@ public class Test {
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		Scanner reader = new Scanner( System.in );
-		String s = ( reader.useDelimiter( "\\Z" ).next() );
-		reader.close();
+		Scraper scr = new Scraper("http://endless.horse/");
+		String s = scr.getWebsite();
 		System.out.println(s);
 		Data d = new Data(s);
 		System.out.println(d.getTags());
 		System.out.println(d.getTags().size());
+		System.out.println(d.getCloud());
 	}
 	
 	

@@ -5,11 +5,12 @@ import java.net.*;
 
 public class Scraper  {
 	
-	private static String URL;
-	private static String website;
+	private String URL;
+	private String website;
 	
 	public Scraper(String url) throws Exception {
 		this.URL = url;
+		website = "";
 		setup();
 	}
 	
