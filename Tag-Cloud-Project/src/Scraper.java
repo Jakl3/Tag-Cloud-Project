@@ -14,6 +14,7 @@ public class Scraper  {
 		setup();
 	}
 	
+	// change mayb?
 	private void setup() throws Exception {
 		try {
 			URL url = new URL(URL);

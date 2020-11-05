@@ -4,6 +4,7 @@ import java.io.*;
 
 public class Data {
 	
+	//f
 	//private static Pattern p = Pattern.compile("((<((h\\d)|(p)|(li)|(title))>)(.+?)(</((h\\d)|(p)|(li)|(title))>))");
 	private static Pattern p1 = Pattern.compile("<(?<capture>h\\d|p|title)>\\s*(?<word>.*?)\\s*</\\k<capture>>",Pattern.DOTALL);
 	private static Pattern p2 = Pattern.compile("<a href.*?=.*?\".*?\">\\s*(?<word>.*?)\\s*</a>",Pattern.DOTALL);
@@ -37,6 +38,7 @@ public class Data {
 		}
 	}
 	
+	//need to fix this method
 	private void getTags(String str) {
 		
 	    Matcher m = p1.matcher(str);
