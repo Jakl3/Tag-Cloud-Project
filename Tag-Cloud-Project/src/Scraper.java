@@ -16,12 +16,10 @@ public class Scraper  {
 	
 	private void setup() throws Exception {
 		try {
-			URL myURL = new URL(URL);
-			URLConnection site = myURL.openConnection();
-			site.connect();
-			Scanner reader = new Scanner( site.getInputStream() );
-			website = ( reader.useDelimiter( "\\Z" ).next() );
-			reader.close();
+			URL url = new URL(URL);
+			Scanner f = new Scanner(url.openStream());
+			website = f.useDelimiter( "\\Z" ).next();
+			f.close();
 		}
 		catch (MalformedURLException e) {
 			// new URL() failed
