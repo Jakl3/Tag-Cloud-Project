@@ -20,7 +20,10 @@ public class Display extends Canvas{
 		for(Integer e : words.keySet()) {
 			w.setFont(new Font("Gulim",Font.PLAIN,e*10));
 			for(String a : words.get(e)) {
-				w.drawString(a, (int)(Math.random()*1100), (int)(Math.random()*900));
+				int width = w.getFontMetrics().stringWidth(a);
+				int height = w.getFontMetrics().getHeight();
+				w.drawString(a, (int)(Math.random()*1100),(int)(Math.random()*900));
+				
 			}
 		}
 	}
