@@ -14,12 +14,11 @@ public class Scraper  {
 		setup();
 	}
 	
-	// change mayb?
 	private void setup() throws Exception {
 		try {
 			URL url = new URL(URL);
 			Scanner f = new Scanner(url.openStream());
-			website = f.useDelimiter("\\Z").next().replaceAll("&.*?;", "").toLowerCase();
+			website = f.useDelimiter("\\Z").next().toLowerCase();
 			f.close();
 		}
 		catch (MalformedURLException e) {
@@ -28,7 +27,7 @@ public class Scraper  {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
 			System.out.println(sw.toString());
-			throw new MalformedURLException("Malformed URL");
+			throw new MalformedURLException("This is not a proper URL");
 		}
 		catch (IOException e) {
 			// openConnection() failed

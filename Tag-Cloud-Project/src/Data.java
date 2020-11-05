@@ -4,7 +4,7 @@ import java.io.*;
 
 public class Data {
 	
-	private static Pattern p1 = Pattern.compile("(<(?<capture1>h\\d|p|title)>\\s*(?<word1>.*?)\\s*</\\k<capture1>>)|(<a (?<capture2>href).*?=.*?\".*?\">\\s*(?<word2>.*?)\\s*</a>)|(<(?<capture3>li)>\\s*(?<word3>.*?)\\s*</li>)",Pattern.DOTALL);
+	private static Pattern p = Pattern.compile("(<(?<capture1>h\\d|p|title)>\\s*(?<word1>.*?)\\s*</\\k<capture1>>)|(<a (?<capture2>href).*?=.*?\".*?\">\\s*(?<word2>.*?)\\s*</a>)|(<(?<capture3>li)>\\s*(?<word3>.*?)\\s*</li>)",Pattern.DOTALL);
 	
 	private List<String> tags;
 	private Map<String,Integer> cloud;
@@ -26,15 +26,18 @@ public class Data {
 		tags = new ArrayList<String>();
 		cloud = new HashMap<String,Integer>();
 		getTags(website);
+		
 		for(String item : tags) {
 			String[] temp = item.split(" ");
 			if(!cloud.containsKey(temp[1])) cloud.put(temp[1], 0);
 			cloud.put(temp[1], cloud.get(temp[1])+worth.get(temp[0]));
 		}
+		
+		cloud = sortByValue(cloud);
 	}
 	
 	private void getTags(String str) {
-	    Matcher m = p1.matcher(str);
+	    Matcher m = p.matcher(str);
 	    while (m.find()) {
 	    	String tag = m.group("capture1");
 	    	String w = m.group("word1");
@@ -50,9 +53,9 @@ public class Data {
 	    	w = w.replaceAll("\n","").replaceAll("\\s+"," ");
 	    	
 	    	getTags(w);
-	    	w = w.replaceAll("<.*?>", "");
-	    	w = w.replaceAll("[^A-Za-z ]", "").replaceAll(" +", " ");
-	    	String[] word = w.split(" ");
+	    	
+	    	w = w.replaceAll("<.*?>", "").replaceAll("[^A-Za-z -_]", "").replaceAll("\\s+", " ");
+	    	String[] word = w.split("[ -_]");
 	    	for(String item : word) {
 	    		if(item.equals("")) continue;
 	    		tags.add(tag + " " + item.trim());
@@ -60,11 +63,36 @@ public class Data {
 	    }
 	}
 	
+	// Returns the list of tags and words
 	public List<String> getTags() {
 		return tags;
 	}
 	
+	// Returns the Tag Cloud
 	public Map<String,Integer> getCloud() {
 		return cloud;
+	}
+	
+	// Sort the map by its values
+	private static Map<String,Integer> sortByValue(Map<String,Integer> map) {
+		Comparator<String> cmp = new vlc(map);
+		TreeMap<String,Integer> res = new TreeMap<>(cmp);
+		res.putAll(map);
+		return res;
+	}
+	
+	// Comparator to sort a map by its values
+	private static class vlc implements Comparator<String> {
+		 
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+	 
+		public vlc(Map<String, Integer> map){
+			this.map.putAll(map);
+		}
+	 
+		public int compare(String s1, String s2) {
+			if(map.get(s1) >= map.get(s2)) return -1;
+			else return 1;
+		}
 	}
 }

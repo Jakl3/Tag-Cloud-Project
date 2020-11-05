@@ -6,29 +6,39 @@ import java.io.*;
 public class Test {
 
 	public static void main(String[] args) throws Exception {
-		Scraper scr = new Scraper("https://www.pornhub.com/");
+		Scanner f = new Scanner(System.in);
+		String web = f.nextLine();
+		
+		Scraper scr = new Scraper(web);
 		String s = scr.getWebsite();
-		
-		PrintWriter out = new PrintWriter(new File("C:\\Users\\jackl\\Desktop\\test\\out1.txt"));
-		
-		out.println(s);
 
-		//String s = "<h1><h2><h3><a href=\"dab\"><li>dabby</li></a></h3></h2></h1>";
-		
 		Data d = new Data(s);
-		System.out.println(d.getTags());
-		for(String key : d.getCloud().keySet())
-			System.out.println(key);
+		System.out.println(d.getCloud());
+		/*Map<String,Integer> cloud = sortByValue(d.getCloud());
+		System.out.println(cloud);*/
+		
+		f.close();
 	}
 	
 	
-	private class Word {
-		int weight;
-		String word;
-		
-		public Word(int weight, String word) {
-			this.weight = weight;
-			this.word = word;
+	private static Map<String,Integer> sortByValue(Map<String,Integer> map) {
+		Comparator<String> cmp = new vlc(map);
+		TreeMap<String,Integer> res = new TreeMap<>(cmp);
+		res.putAll(map);
+		return res;
+	}
+	
+	private static class vlc implements Comparator<String> {
+		 
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+	 
+		public vlc(Map<String, Integer> map){
+			this.map.putAll(map);
+		}
+	 
+		public int compare(String s1, String s2) {
+			if(map.get(s1) >= map.get(s2)) return -1;
+			else return 1;
 		}
 	}
 

@@ -3,6 +3,7 @@ import java.util.*;
 
 public class Main extends JFrame {
 	static Data site;
+	
 	public Main() {
 		super("Tag Cloud Project");
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -14,14 +15,14 @@ public class Main extends JFrame {
 	}
 	public static void main(String[] args) throws Exception {
 		Scanner kb = new Scanner(System.in);
-		//System.out.println("What website would you like to use?");
-		//String url = kb.nextLine();
-		String url = "https://codingbat.com/java";
-		Scraper scrap = new Scraper(url);
-		//System.out.println(scrap.getWebsite());
-		site = new Data(scrap.getWebsite());
-		Main Cloud = new Main();
+		System.out.println("What website would you like to make a tag cloud out of?");
+		String url = kb.nextLine();
+		Scraper scr = new Scraper(url);
+		String s = scr.getWebsite();
+		site = new Data(s);		
 		
+		Main Cloud = new Main();
+		kb.close();
 	}
 }
 
