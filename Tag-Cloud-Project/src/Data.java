@@ -4,11 +4,10 @@ import java.io.*;
 
 public class Data {
 	
+	// Pattern
 	private static Pattern p = Pattern.compile("(<(?<capture1>h\\d|p|title)>\\s*(?<word1>.*?)\\s*</\\k<capture1>>)|(<a (?<capture2>href).*?=.*?\".*?\">\\s*(?<word2>.*?)\\s*</a>)|(<(?<capture3>li)>\\s*(?<word3>.*?)\\s*</li>)",Pattern.DOTALL);
 	
-	private List<String> tags;
-	private Map<String,Integer> cloud;
-	
+	// Weights of each tag
 	private static Map<String,Integer> worth = new HashMap<String,Integer>() {{
 			put("h1",10);
 			put("h2",8);
@@ -21,7 +20,13 @@ public class Data {
 			put("li",1);
 			put("href",5);
 	}};
+		
+	private List<String> tags;
+	private Map<String,Integer> cloud;
 	
+	
+	
+	// Constructor
 	public Data(String website) {
 		tags = new ArrayList<String>();
 		cloud = new HashMap<String,Integer>();
@@ -36,6 +41,7 @@ public class Data {
 		cloud = sortByValue(cloud);
 	}
 	
+	// Finds groups of valid tags and words to include in the Tag Cloud
 	private void getTags(String str) {
 	    Matcher m = p.matcher(str);
 	    while (m.find()) {

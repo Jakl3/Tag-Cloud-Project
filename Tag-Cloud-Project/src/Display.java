@@ -12,7 +12,7 @@ public class Display extends Canvas{
 			}
 			words.get(k.getValue()).add(k.getKey());
 		}
-		System.out.println(words);
+		System.out.println("AA" + words);
 		setBackground(Color.black);
 	}
 	public void paint(Graphics w) {
