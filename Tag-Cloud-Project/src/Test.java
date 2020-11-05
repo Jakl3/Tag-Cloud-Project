@@ -6,18 +6,22 @@ import java.io.*;
 public class Test {
 
 	public static void main(String[] args) throws Exception {
-		Scanner f = new Scanner(System.in);
+		/*Scanner f = new Scanner(System.in);
 		String web = f.nextLine();
 		
 		Scraper scr = new Scraper(web);
-		String s = scr.getWebsite();
+		String s = scr.getWebsite();*/
+		String s = "<h1>hello fsfsaf your mom is super gay</h1>\r\n" + 
+				"<h1>hello fsfsaf your mom is super gay</h1>\r\n" + 
+				"<h1>hello fsfsaf your mom is super gay</h1>\r\n" + 
+				"<h1>word fsfsaf your mom is super gay</h1>";
 
 		Data d = new Data(s);
 		System.out.println(d.getCloud());
 		/*Map<String,Integer> cloud = sortByValue(d.getCloud());
 		System.out.println(cloud);*/
 		
-		f.close();
+		//f.close();
 	}
 	
 	

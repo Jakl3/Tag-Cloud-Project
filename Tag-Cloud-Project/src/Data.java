@@ -97,7 +97,9 @@ public class Data {
 		}
 	 
 		public int compare(String s1, String s2) {
-			if(map.get(s1) >= map.get(s2)) return -1;
+			int a1 = map.get(s1), a2 = map.get(s2);
+			if(a1 > a2) return -1;
+			else if(a1 == a2) return s1.compareTo(s2);
 			else return 1;
 		}
 	}
