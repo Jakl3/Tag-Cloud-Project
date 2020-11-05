@@ -2,17 +2,15 @@ import javax.swing.JFrame;
 import java.util.*;
 
 public class Main extends JFrame {
+	static Data site;
 	public Main() {
 		super("Tag Cloud Project");
-		setSize(1100,900);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		HashMap<String,Integer> temp = new HashMap<String,Integer>();
-		temp.put("test1", 5);
-		temp.put("test2", 10);
-		temp.put("test3", 15);
-		temp.put("test4", 20);
-		getContentPane().add(new Display(temp));
+		getContentPane().add(new Display(site.getCloud()));
 		setVisible(true);
+		System.out.println(getContentPane().getSize());
+		System.out.println(getContentPane().getHeight());
 	}
 	public static void main(String[] args) throws Exception {
 		Scanner kb = new Scanner(System.in);
@@ -20,6 +18,8 @@ public class Main extends JFrame {
 		//String url = kb.nextLine();
 		String url = "https://codingbat.com/java";
 		Scraper scrap = new Scraper(url);
+		//System.out.println(scrap.getWebsite());
+		site = new Data(scrap.getWebsite());
 		Main Cloud = new Main();
 		
 	}
