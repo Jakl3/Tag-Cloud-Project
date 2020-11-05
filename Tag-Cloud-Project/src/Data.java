@@ -4,16 +4,12 @@ import java.io.*;
 
 public class Data {
 	
-	//f
-	//private static Pattern p = Pattern.compile("((<((h\\d)|(p)|(li)|(title))>)(.+?)(</((h\\d)|(p)|(li)|(title))>))");
-	private static Pattern p1 = Pattern.compile("<(?<capture>h\\d|p|title)>\\s*(?<word>.*?)\\s*</\\k<capture>>",Pattern.DOTALL);
-	private static Pattern p2 = Pattern.compile("<a href.*?=.*?\".*?\">\\s*(?<word>.*?)\\s*</a>",Pattern.DOTALL);
-	private static Pattern p3 = Pattern.compile("<li>\\s*(?<word>.*?)\\s*</li>",Pattern.DOTALL);
+	private static Pattern p1 = Pattern.compile("(<(?<capture1>h\\d|p|title)>\\s*(?<word1>.*?)\\s*</\\k<capture1>>)|(<a (?<capture2>href).*?=.*?\".*?\">\\s*(?<word2>.*?)\\s*</a>)|(<(?<capture3>li)>\\s*(?<word3>.*?)\\s*</li>)",Pattern.DOTALL);
 	
 	private List<String> tags;
 	private Map<String,Integer> cloud;
 	
-	private Map<String,Integer> worth = new HashMap<String,Integer>() {{
+	private static Map<String,Integer> worth = new HashMap<String,Integer>() {{
 			put("h1",10);
 			put("h2",8);
 			put("h3",6);
@@ -29,7 +25,6 @@ public class Data {
 	public Data(String website) {
 		tags = new ArrayList<String>();
 		cloud = new HashMap<String,Integer>();
-		
 		getTags(website);
 		for(String item : tags) {
 			String[] temp = item.split(" ");
@@ -38,38 +33,28 @@ public class Data {
 		}
 	}
 	
-	//need to fix this method
 	private void getTags(String str) {
-		
 	    Matcher m = p1.matcher(str);
-	    while (m.find()) {	    	
-	    	String tag = m.group("capture");
-	    	String w = m.group("word").replaceAll("\n","");
-	    	System.out.println(tag + " " + w);
-	    	w = w.replaceAll("<.*?>.*?<.*?>", "");
-	    	System.out.println(tag + " " + w);
-	    	String[] word = w.split(" ");
-	    	for(String item : word) {
-	    		tags.add(tag + " " + item.trim());
-	    	}
-	    }
-	    
-	    m = p2.matcher(str);
 	    while (m.find()) {
-	    	String tag = "href";
-	    	String w = m.group("word").replaceAll("<.*?>.*?<.*?>", "");
-	    	String[] word = w.split(" ");
-	    	for(String item : word) {
-	    		tags.add(tag + " " + item.trim());
+	    	String tag = m.group("capture1");
+	    	String w = m.group("word1");
+	    	
+	    	if(tag==null || w==null) {
+	    		tag = m.group("capture2");
+	    		w = m.group("word2");
 	    	}
-	    }
-	    
-	    m = p3.matcher(str);
-	    while (m.find()) {
-	    	String tag = "li";
-	    	String w = m.group("word").replaceAll("<.*?>.*?<.*?>", "");
+	    	if(tag==null || w==null) {
+	    		tag = m.group("capture3");
+	    		w = m.group("word3");
+	    	}
+	    	w = w.replaceAll("\n","").replaceAll("\\s+"," ");
+	    	
+	    	getTags(w);
+	    	w = w.replaceAll("<.*?>", "");
+	    	w = w.replaceAll("[^A-Za-z ]", "").replaceAll(" +", " ");
 	    	String[] word = w.split(" ");
 	    	for(String item : word) {
+	    		if(item.equals("")) continue;
 	    		tags.add(tag + " " + item.trim());
 	    	}
 	    }

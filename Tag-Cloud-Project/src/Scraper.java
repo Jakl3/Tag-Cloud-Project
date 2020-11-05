@@ -19,7 +19,7 @@ public class Scraper  {
 		try {
 			URL url = new URL(URL);
 			Scanner f = new Scanner(url.openStream());
-			website = f.useDelimiter( "\\Z" ).next();
+			website = f.useDelimiter("\\Z").next().replaceAll("&.*?;", "").toLowerCase();
 			f.close();
 		}
 		catch (MalformedURLException e) {
