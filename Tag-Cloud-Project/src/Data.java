@@ -41,6 +41,10 @@ public class Data {
 		cloud = sortByValue(cloud);
 	}
 	
+	public int getMax() {
+		return Collections.max(cloud.values());
+	}
+	
 	// Finds groups of valid tags and words to include in the Tag Cloud
 	private void getTags(String str) {
 	    Matcher m = p.matcher(str);
