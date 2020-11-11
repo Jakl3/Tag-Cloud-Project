@@ -2,13 +2,14 @@ import java.awt.*;
 import java.util.*;
 
 public class Display extends Canvas{
+	
 	private Map<Integer, HashSet<String>> words;
 	private int max;
 	private ArrayList<Rectangle> rectangles;
 	int X, Y;
 	
 	public Display(int m, Map<String,Integer> w) {
-		//rank words by rank
+		// Rank words by rank
 		words = new TreeMap<Integer,HashSet<String>>(Collections.reverseOrder());
 		for(Map.Entry<String,Integer> k : w.entrySet()) {
 			if(!words.containsKey(k.getValue())) {
