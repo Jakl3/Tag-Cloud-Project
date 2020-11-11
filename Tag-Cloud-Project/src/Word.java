@@ -23,6 +23,12 @@ public class Word extends Rectangle {
 	public Integer getWeight() {
 		return weight;
 	}
+	public void changeX(int n) {
+		this.x += n;
+	}
+	public void changeY(int n) {
+		this.y += n;
+	}
 	public void setDimensions(int x, int y, int w, int h) {
 		this.x = x;
 		this.y = y;
