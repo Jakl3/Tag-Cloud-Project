@@ -6,7 +6,7 @@ import java.awt.*;
 public class Word extends Rectangle {
 	
 	String word;
-	int weight,height,width;
+	int weight;
 	Font f;
 	
 	public Word(String word, int weight) {
@@ -22,6 +22,12 @@ public class Word extends Rectangle {
 	}
 	public Integer getWeight() {
 		return weight;
+	}
+	public void setDimensions(int x, int y, int w, int h) {
+		this.x = x;
+		this.y = y;
+		this.width = w;
+		this.height = h;
 	}
 	public String toString() {
 		return word + ":" + weight;

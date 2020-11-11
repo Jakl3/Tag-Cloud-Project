@@ -25,6 +25,8 @@ public class Display extends Canvas{
 	}
 	
 	public void paint(Graphics w) {
+		ArrayList<Word> drawnWords = new ArrayList<Word>();
+		//use to check intersects stuff later
 		w.setColor(Color.CYAN);
 		for(Word e : words) {
 			//w.setFont(new Font("Gulim",Font.PLAIN,e));
@@ -36,6 +38,9 @@ public class Display extends Canvas{
 			int[] dx = {1,1,1,0,0,-1,-1,-1};
 			int[] dy = {-1,0,1,1,-1,-1,0,1};
 			int x = (int)(Math.random()*800), y = (int)(Math.random()*800);
+			Rectangle r = new Rectangle(x,y,width,height);
+			e.setDimensions(x, y, width, height);
+			drawnWords.add(e);
 			w.drawRect(x, y, width, height);
 			w.drawString(e.getWord(), x, y+height);
 				//int width = w.getFontMetrics().stringWidth(a);	
