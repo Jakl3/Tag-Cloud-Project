@@ -1,3 +1,4 @@
 To do:
 
 1. fix data for embeded tags (ie. <h1><a href....></h1>)
+2. scale for sites with small weights (if max less than some amount multiply weights to reach certain size) - do reverse for sites too big?
