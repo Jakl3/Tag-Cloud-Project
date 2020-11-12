@@ -2,7 +2,7 @@ import java.awt.*;
 import java.util.*;
 
 public class Display extends Canvas{
-	
+	private final Color background = Color.BLACK;
 	private ArrayList<Word> words;
 	private int max;
 	int x, y;
@@ -14,7 +14,7 @@ public class Display extends Canvas{
 			words.add(new Word(k.getKey(),k.getValue()));
 		}
 		System.out.println("AA" + words);
-		setBackground(Color.black);
+		setBackground(background);
 		max = m;
 		System.out.println("MAXXX " + max);
 		
