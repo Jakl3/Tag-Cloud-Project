@@ -21,7 +21,7 @@ public class Display extends Canvas{
 		
 		rectangles = new ArrayList<>();
 		
-		X = 400; Y = 400;
+		X = Main.WIDTH/2; Y = Main.HEIGHT/2;
 	}
 	
 	public void paint(Graphics w) {
