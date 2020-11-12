@@ -32,12 +32,12 @@ public class Display extends Canvas{
 			FontMetrics pp = w.getFontMetrics();
 			int width = pp.stringWidth(e.getWord());
 			//int height = pp.getMaxAscent();
-			int height = (int) pp.getLineMetrics(e.getWord(), w).getHeight();
+			int height = pp.getHeight() - pp.getDescent();
 			int[] dx = {0,-1,-1,-1,0,1,1,1};
 			int[] dy = {-1,-1,0,1,1,1,0,-1};
 			e.setDimensions(x, y, width, height);
-				boolean ok = false;
-				if(drawnWords.size()>0) {
+			boolean ok = false;
+			if(drawnWords.size()>0) {
 				while(!ok) {
 					for(Word item : drawnWords) {
 						if(e.intersects(item)) {
@@ -55,7 +55,7 @@ public class Display extends Canvas{
 				}
 				drawnWords.add(e);
 				w.drawRect(e.x, e.y, e.width, e.height);
-				w.drawString(e.getWord(), e.x, e.y+height);
+				w.drawString(e.getWord(), e.x, e.y+height-pp.getDescent());
 				i++;
 				i%=8;
 		}

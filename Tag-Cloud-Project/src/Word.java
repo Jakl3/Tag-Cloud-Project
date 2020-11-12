@@ -12,7 +12,7 @@ public class Word extends Rectangle {
 	public Word(String word, int weight) {
 		this.word = word;
 		this.weight = weight;
-		f = new Font("Verdana",Font.PLAIN,weight);
+		f = new Font(Font.SANS_SERIF, Font.BOLD,weight);
 	}
 	public Font getFont() {
 		return f;
