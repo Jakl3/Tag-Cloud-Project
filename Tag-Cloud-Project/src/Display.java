@@ -3,6 +3,7 @@ import java.util.*;
 
 public class Display extends Canvas{
 	private final Color background = Color.BLACK;
+	private final Color text = Color.CYAN;
 	private ArrayList<Word> words;
 	private int max;
 	int x, y;
@@ -24,7 +25,7 @@ public class Display extends Canvas{
 	public void paint(Graphics w) {
 		ArrayList<Word> drawnWords = new ArrayList<Word>();
 		//use to check intersects stuff later
-		w.setColor(Color.CYAN);
+		w.setColor(text);
 		int i = 0;
 		for(Word e : words) {
 			//w.setFont(new Font("Gulim",Font.PLAIN,e));
@@ -54,7 +55,10 @@ public class Display extends Canvas{
 					}
 				}
 				drawnWords.add(e);
+				//w.setColor(background);
+				//rectangle color
 				w.drawRect(e.x, e.y, e.width, e.height);
+				w.setColor(text);
 				w.drawString(e.getWord(), e.x, e.y+height-pp.getDescent());
 				i++;
 				i%=8;
