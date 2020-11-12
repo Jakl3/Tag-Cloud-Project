@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 import java.awt.geom.*;
+import java.awt.font.*;
 
 public class Test extends JFrame {
 	
@@ -44,13 +45,13 @@ public class Test extends JFrame {
 		
 		public Bruh() {
 			setBackground(Color.BLACK);
-			e = new Word("abcdefghijklmnopqrstuvwxyz",50);
+			e = new Word("hd",100);
 			x = 50;
 			y = 200;
 		}
 		
 		public void paint(Graphics w) {
-			w.setFont(e.getFont());
+		    w.setFont(e.getFont());
 			FontMetrics pp = w.getFontMetrics();
 			
 			int width = pp.stringWidth(e.getWord());
@@ -58,20 +59,38 @@ public class Test extends JFrame {
 			
 			e.setDimensions(x, y, width, height);
 			
-			w.drawRect(e.x, e.y, e.width, e.height);
-			w.drawString(e.getWord(), e.x, e.y+height-pp.getDescent());
+			/*w.drawRect(e.x, e.y, e.width, e.height);
+			w.drawString(e.getWord(), e.x, e.y);*/
 			
 			
+			Graphics2D g2 = (Graphics2D) w;
 			
-			String str = "abcdefghijklmnopqrstuvwxyz";
-	        Rectangle2D rect = pp.getStringBounds(str, w);
-
-	        int x = 5;
-	        int y = 100; 
-
-	        w.drawRect(x, y - (int)rect.getHeight(), (int)rect.getWidth(), (int)rect.getHeight());
-	        w.drawString(str, x, y-pp.getDescent());
-			
+			/*FontRenderContext frc = g2.getFontRenderContext();
+	        GlyphVector gv = g2.getFont().createGlyphVector(frc, e.getWord());
+	        Rectangle r = gv.getPixelBounds(null, 400, 400);
+	        
+	        System.out.println(r.y);
+	        r.y += r.height;
+	        
+	        System.out.println(r.y);
+	        System.out.println(r.height);*/
+	        
+	        Rectangle r = getBounds(g2,e.getWord(),x,y);
+	        
+	        g2.drawString(e.getWord(), x, y);
+	        g2.draw(r);
+	        
+	        
+	        r = getBounds(g2,"gdfasgppp", 50,400);
+	        g2.drawString("gdfasgppp", 50, 400);
+	        g2.draw(r);
+	        
+		}
+		
+		public Rectangle getBounds(Graphics2D g, String s, int x, int y) {
+			FontRenderContext render = g.getFontRenderContext();
+	        GlyphVector vec = g.getFont().createGlyphVector(render, s);
+	        return vec.getPixelBounds(null, x, y);
 		}
 	}
 	
