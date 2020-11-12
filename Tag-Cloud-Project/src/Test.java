@@ -81,9 +81,18 @@ public class Test extends JFrame {
 	        g2.draw(r);
 	        
 	        
+	        
 	        r = getBounds(g2,"gdfasgppp", 50,400);
+	        
+	        r.y -= pp.getDescent();
+	        
 	        g2.drawString("gdfasgppp", 50, 400);
 	        g2.draw(r);
+	        
+	        
+	        
+	        g2.setColor(Color.RED);
+	        g2.drawRect(50, 400, 100, 100);
 	        
 		}
 		
