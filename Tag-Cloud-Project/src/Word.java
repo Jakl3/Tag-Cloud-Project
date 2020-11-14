@@ -5,14 +5,19 @@ import java.awt.*;
 
 public class Word extends Rectangle {
 	
-	String word;
-	int weight;
-	Font f;
+	private String word;
+	private int weight;
+	private Font f;
+	private Color c;
 	
 	public Word(String word, int weight) {
 		this.word = word;
 		this.weight = weight;
 		f = new Font(Font.SANS_SERIF, Font.BOLD,weight);
+		c = new Color((int)(Math.random()*0x1000000));
+	}
+	public Color getColor() {
+		return c;
 	}
 	public Font getFont() {
 		return f;

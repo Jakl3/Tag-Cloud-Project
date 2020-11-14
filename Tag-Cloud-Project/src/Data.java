@@ -5,10 +5,10 @@ import java.io.*;
 public class Data {
 	
 	// Pattern
-	private static final Pattern p = Pattern.compile("(<(?<capture1>h\\d|p|title)>\\s*(?<word1>.*?)\\s*</\\k<capture1>>)|(<a (?<capture2>href).*?=.*?\".*?\">\\s*(?<word2>.*?)\\s*</a>)|(<(?<capture3>li)>\\s*(?<word3>.*?)\\s*</li>)",Pattern.DOTALL);
+	private static final Pattern p = Pattern.compile("(<(?<capture1>h\\d|p|title|li)>\\s*(?<word1>.*?)\\s*</\\k<capture1>>)|(<a (?<capture2>href).*?=.*?\".*?\">\\s*(?<word2>.*?)\\s*</a>)",Pattern.DOTALL);
 	
 	// Weights of each tag
-	private static Map<String,Integer> worth = new HashMap<String,Integer>() {{
+	private static final Map<String,Integer> worth = new HashMap<String,Integer>() {{
 			put("h1",10);
 			put("h2",8);
 			put("h3",6);
@@ -56,10 +56,6 @@ public class Data {
 	    		tag = m.group("capture2");
 	    		w = m.group("word2");
 	    	}
-	    	if(tag==null || w==null) {
-	    		tag = m.group("capture3");
-	    		w = m.group("word3");
-	    	}
 	    	w = w.replaceAll("\n","").replaceAll("\\s+"," ");
 	    	
 	    	getTags(w);
@@ -84,7 +80,7 @@ public class Data {
 	}
 	
 	// Sort the map by its values
-	private static Map<String,Integer> sortByValue(Map<String,Integer> map) {
+	private static TreeMap<String,Integer> sortByValue(Map<String,Integer> map) {
 		Comparator<String> cmp = new vlc(map);
 		TreeMap<String,Integer> res = new TreeMap<>(cmp);
 		res.putAll(map);

@@ -1,6 +1,7 @@
 import javax.swing.JFrame;
-import java.awt.Color;
+import java.awt.*;
 import java.util.*;
+import java.awt.event.*;
 
 public class Main extends JFrame {
 	
@@ -8,14 +9,24 @@ public class Main extends JFrame {
 	static final int WIDTH = 800, HEIGHT = 800;
 	
 	public Main() {
-		super("Tag Cloud Project");
-		//setExtendedState(JFrame.MAXIMIZED_BOTH);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		super("Tag Cloud Project - Jack Le & Nathan Nguyen");
+		
 		setSize(WIDTH,HEIGHT);
 		getContentPane().add(new Display(site.getMax(),site.getCloud()));
 		setVisible(true);
-		System.out.println("size:" + getContentPane().getSize());
-		System.out.println("height:" + getContentPane().getHeight());
+		setLocationRelativeTo(null);
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
+					dispose();
+			}
+		});
+		
+		System.out.println("size: " + getContentPane().getSize().toString());
+		System.out.println("height: " + getContentPane().getHeight());
+		
 	}
 	
 	public static void main(String[] args) throws Exception {
@@ -30,9 +41,9 @@ public class Main extends JFrame {
 		System.out.println(s);
 		
 		System.out.println(site.getCloud());
-		System.out.println(site.getMax());
+		System.out.println("MAX " + site.getMax());
 		
-		Main Cloud = new Main();
+		Main run = new Main();
 		//kb.close();
 	}
 }
