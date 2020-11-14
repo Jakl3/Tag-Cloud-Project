@@ -2,16 +2,16 @@ import java.awt.*;
 import java.awt.font.FontRenderContext;
 import java.awt.font.GlyphVector;
 import java.util.*;
+import javax.swing.*;
 
-public class Display extends Canvas{
-	private final Color background = Color.BLACK;
-	//private final Color text = Color.CYAN;
-	private ArrayList<Word> words;
-	private int max;
-	//int x, y;
-	static final int centerX = Main.WIDTH/2, centerY = Main.HEIGHT/2;
+public class Display extends Canvas  {
 	
-	public Display(int m, Map<String,Integer> w) {
+	private final Color background = Color.BLACK;
+	private ArrayList<Word> words;
+	private double SCALE;
+	private static final int centerX = Main.WIDTH/2, centerY = Main.HEIGHT/2;
+	
+	public Display(int max, Map<String,Integer> w) {
 		// Rank words by rank
 		words = new ArrayList<Word>();
 		for(Map.Entry<String,Integer> k : w.entrySet()) {
@@ -19,19 +19,17 @@ public class Display extends Canvas{
 		}
 		System.out.println("AA" + words);
 		setBackground(background);
-		max = m;
-		System.out.println("MAXXX " + max);
 		
-		//x = Main.WIDTH/2; y = Main.HEIGHT/2;
+		SCALE = max/250.0;
+		System.out.println(SCALE);
 	}
 	
 	public void paint(Graphics w) {
 		ArrayList<Rectangle> drawnWords = new ArrayList<>();
 		
-		Graphics2D w2 = (Graphics2D) w;
-		
 		for(Word e : words) {
-			w.setFont(e.getFont());
+			w.setFont(new Font(Font.SANS_SERIF, Font.BOLD, (int)(e.getWeight()/SCALE)));
+			//w.setFont(new Font(Font.SANS_SERIF, Font.BOLD, e.getWeight()));
 			w.setColor(e.getColor());
 			FontMetrics fm = w.getFontMetrics();
 			
@@ -48,17 +46,7 @@ public class Display extends Canvas{
 			for(int i = 0; i < Main.WIDTH; i++) {
 				height: for(int j = 0; j < Main.HEIGHT; j++) {
 					Rectangle pos = new Rectangle(i,j,width,height);
-					/*Rectangle pos = getBounds(w2, e.getWord(), i, j);
-					double shiftX = Math.sqrt(pos.width)/5;
-					pos.x -= shiftX;
-					pos.width += 2 * shiftX;
 			        
-			        double shiftY = Math.sqrt(pos.width)/5;
-			        pos.y -= shiftY;
-			        pos.height += 2 * shiftY;*/
-			        
-			        
-					
 					for(Rectangle item : drawnWords) {
 						if(pos.intersects(item)) {
 							continue height;
@@ -83,17 +71,16 @@ public class Display extends Canvas{
 			
 			drawnWords.add(end);
 
-			//w.drawRect(end.x, end.y/*+fm.getDescent()+(int)Math.sqrt(h1)/3*/, end.width, end.height);
+			//w.drawRect(end.x, end.y, end.width, end.height);
 			
 			int placeY = e.getWord().matches(".*[gjpqy].*") ? finY+height-fm.getDescent() :
 				finY + height;
 			
 			w.drawString(e.getWord(), finX, placeY - (height - bounds.height)/2);
 			
-				
-				
 		}
 		
+		System.out.println("DONE");
 		
 	}
 	

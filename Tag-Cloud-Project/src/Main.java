@@ -1,18 +1,23 @@
-import javax.swing.JFrame;
+import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 import java.awt.event.*;
+import java.io.*;
+import java.awt.image.*;
+import javax.imageio.*;
 
 public class Main extends JFrame {
 	
 	static Data site;
-	static final int WIDTH = 800, HEIGHT = 800;
+	static Display disp;
+	static final int WIDTH = 1200, HEIGHT = 800;
 	
 	public Main() {
 		super("Tag Cloud Project - Jack Le & Nathan Nguyen");
 		
 		setSize(WIDTH,HEIGHT);
-		getContentPane().add(new Display(site.getMax(),site.getCloud()));
+		setBackground(Color.BLACK);
+		getContentPane().add(disp);
 		setVisible(true);
 		setLocationRelativeTo(null);
 		
@@ -23,6 +28,21 @@ public class Main extends JFrame {
 					dispose();
 			}
 		});
+		
+		BufferedImage bi = new BufferedImage ( disp.getWidth (), disp.getHeight (), BufferedImage.TYPE_INT_ARGB );
+        Graphics2D g2d = bi.createGraphics ();
+        disp.paintAll ( g2d );
+        g2d.dispose ();
+
+        try
+        {
+            ImageIO.write ( bi, "png", new File ( "image.png" ) );
+        }
+        catch ( IOException e )
+        {
+            e.printStackTrace ();
+        }
+
 		
 		System.out.println("size: " + getContentPane().getSize().toString());
 		System.out.println("height: " + getContentPane().getHeight());
@@ -36,14 +56,15 @@ public class Main extends JFrame {
 		String url = "https://www.pornhub.com/";
 		Scraper scr = new Scraper(url);
 		String s = scr.getWebsite();
-		site = new Data(s);		
+		site = new Data(s);	
+		disp = new Display(site.getMax(),site.getCloud());
 		
-		System.out.println(s);
+		/*System.out.println(s);
 		
 		System.out.println(site.getCloud());
-		System.out.println("MAX " + site.getMax());
+		System.out.println("MAX " + site.getMax());*/
 		
-		Main run = new Main();
+		new Main();
 		//kb.close();
 	}
 }

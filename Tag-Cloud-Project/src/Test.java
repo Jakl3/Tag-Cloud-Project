@@ -79,7 +79,7 @@ public class Test extends JFrame {
 		}
 		
 		public void paint(Graphics w) {
-		    w.setFont(e.getFont());
+		    //w.setFont(e.getFont());
 			FontMetrics pp = w.getFontMetrics();
 			
 			/*w.drawRect(e.x, e.y, e.width, e.height);
