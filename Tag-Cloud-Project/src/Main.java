@@ -29,6 +29,7 @@ public class Main extends JFrame {
 			}
 		});
 		
+		// Output into an image
 		BufferedImage bi = new BufferedImage ( disp.getWidth (), disp.getHeight (), BufferedImage.TYPE_INT_ARGB );
         Graphics2D g2d = bi.createGraphics ();
         disp.paintAll ( g2d );
