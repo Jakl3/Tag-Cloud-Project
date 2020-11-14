@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.*;
 import java.awt.geom.*;
 import java.awt.font.*;
@@ -7,7 +9,7 @@ import java.awt.font.*;
 public class Test extends JFrame {
 	
 	static Data site;
-	static final int WIDTH = 800, HEIGHT = 800;
+	static final int WIDTH = 1800, HEIGHT = 800;
 	
 	public Test() {
 		super("Tag Cloud Project");
@@ -18,6 +20,13 @@ public class Test extends JFrame {
 		setVisible(true);
 		System.out.println("size:" + getContentPane().getSize());
 		System.out.println("height:" + getContentPane().getHeight());
+		
+		addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
+					dispose();
+			}
+		});
 	}
 	
 	public static void main(String[] args) throws Exception {
@@ -64,7 +73,7 @@ public class Test extends JFrame {
 		
 		public Bruh() {
 			setBackground(Color.BLACK);
-			e = new Word("hd",100);
+			e = new Word("abcdefghijklmnopqrstuvwxyz",100);
 			x = 50;
 			y = 200;
 		}
@@ -72,11 +81,6 @@ public class Test extends JFrame {
 		public void paint(Graphics w) {
 		    w.setFont(e.getFont());
 			FontMetrics pp = w.getFontMetrics();
-			
-			int width = pp.stringWidth(e.getWord());
-			int height = pp.getHeight() - pp.getDescent();
-			
-			e.setDimensions(x, y, width, height);
 			
 			/*w.drawRect(e.x, e.y, e.width, e.height);
 			w.drawString(e.getWord(), e.x, e.y);*/
@@ -97,36 +101,52 @@ public class Test extends JFrame {
 	        System.out.println(r.y);
 	        System.out.println(r.height);*/
 	        
-	        Rectangle r = getBounds(g2,e.getWord(),x,y);
+	        /*Rectangle r = getBounds(g2,e.getWord(),x,y);
 	        
-	        double shiftX = r.width/15;
+	        double shiftX = Math.sqrt(r.width)/5;
 	        r.x -= shiftX;
 	        r.width += 2 * shiftX;
 	        
-	        double shiftY = r.height/15;
+	        double shiftY = Math.sqrt(r.width)/5;
 	        r.y -= shiftY;
 	        r.height += 2 * shiftY;
 	        
 	        
 	        g2.draw(r);
-	        g2.drawString(e.getWord(), x, y);
+	        g2.drawString(e.getWord(), x, y);*/
 	       
+	        //set 2
 	        
-	        
-	        
-	        r = getBounds(g2,"gdfasgppp", 50,400);
-	        
-	        /*r.y -= pp.getDescent();
-	        
-	        g2.drawString("gdfasgppp", 50, 400);
-	        g2.draw(r);
-	        
-	        
-	        
-	        g2.setColor(Color.RED);
-	        g2.drawRect(50, 400, 100, 100);*/
+			int w1 = pp.stringWidth(e.getWord());
+			int h1 = pp.getHeight() - pp.getDescent();
+			
+	       /* e.setDimensions(50, 500, width, height);
+	        w.drawRect(50, 500, e.width, e.height);
+
+			w.drawString(e.getWord(), e.x, e.y+height);*/
+			
+			String t = "abcdefghijklmnopqrstuvwxyz";
+			w.drawString(t, 50, 100+h1);
+			w.drawRect(50, 100+pp.getDescent()+(int)Math.sqrt(h1)/3, pp.stringWidth(t), h1-pp.getDescent());
+			
+			String s = "abc";
+			
+			int width = pp.stringWidth(e.getWord());
+			int height = s.matches(".*[gjpqy].*") ? h1 : h1 - pp.getDescent();
+			
+			/*if(s.matches(".*[gjpqy].*")) {
+				System.out.println("AAAAAAA");
+				w.drawRect(600, 500+pp.getDescent()+(int)Math.sqrt(height)/3, pp.stringWidth(s), h1);
+			}
+			else {
+				w.drawRect(600, 500+pp.getDescent()+(int)Math.sqrt(height)/3, pp.stringWidth(s), h1-pp.getDescent());
+			}*/
+			w.drawRect(600, 500+pp.getDescent()+(int)Math.sqrt(h1)/3, pp.stringWidth(s), height);
+			w.drawString(s, 600, 500+h1);
+			
 	        
 		}
+		
 		
 		public Rectangle getBounds(Graphics2D g, String s, int x, int y) {
 			FontRenderContext render = g.getFontRenderContext();

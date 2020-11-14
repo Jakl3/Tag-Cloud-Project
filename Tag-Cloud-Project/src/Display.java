@@ -27,34 +27,37 @@ public class Display extends Canvas{
 	
 	public void paint(Graphics w) {
 		ArrayList<Rectangle> drawnWords = new ArrayList<>();
-		//use to check intersects stuff later
-		//w.setColor(text);
-		//int i = 0;
 		
 		Graphics2D w2 = (Graphics2D) w;
 		
 		for(Word e : words) {
 			w.setFont(e.getFont());
 			w.setColor(e.getColor());
-			FontMetrics pp = w.getFontMetrics();
+			FontMetrics fm = w.getFontMetrics();
 			
-			/*int width = pp.stringWidth(e.getWord());
-			int height = pp.getHeight() - pp.getDescent();*/
+			Rectangle bounds = getBounds((Graphics2D) w, e.getWord(), 0,0);
+			
+			int h1 = fm.getHeight() - fm.getDescent();
+			int width = fm.stringWidth(e.getWord());
+			width += Math.sqrt(width)/3;
+			int height = e.getWord().matches(".*[gjpqy].*") ? h1 : h1 - fm.getDescent();
 			
 			int finX = 0, finY = 0;
 			double mindis = 1e8;
 			Rectangle end = new Rectangle();
 			for(int i = 0; i < Main.WIDTH; i++) {
 				height: for(int j = 0; j < Main.HEIGHT; j++) {
-					//Rectangle pos = new Rectangle(i,j,width,height);
-					Rectangle pos = getBounds(w2, e.getWord(), i, j);
-					double shiftX = pos.width/20;
+					Rectangle pos = new Rectangle(i,j,width,height);
+					/*Rectangle pos = getBounds(w2, e.getWord(), i, j);
+					double shiftX = Math.sqrt(pos.width)/5;
 					pos.x -= shiftX;
 					pos.width += 2 * shiftX;
 			        
-			        double shiftY = pos.height/20;
+			        double shiftY = Math.sqrt(pos.width)/5;
 			        pos.y -= shiftY;
-			        pos.height += 2 * shiftY;
+			        pos.height += 2 * shiftY;*/
+			        
+			        
 					
 					for(Rectangle item : drawnWords) {
 						if(pos.intersects(item)) {
@@ -78,45 +81,15 @@ public class Display extends Canvas{
 				}
 			}
 			
-			//System.out.println(finX + " " + finY);
 			drawnWords.add(end);
-			/*e.setDimensions(finX,finY,width,height);
-			w.drawRect(e.x, e.y, e.width, e.height);
-			w.drawString(e.getWord(), e.x, e.y+height-pp.getDescent());*/
+
+			//w.drawRect(end.x, end.y/*+fm.getDescent()+(int)Math.sqrt(h1)/3*/, end.width, end.height);
 			
-			//w2.draw(end);
-			w2.drawString(e.getWord(), finX, finY);
+			int placeY = e.getWord().matches(".*[gjpqy].*") ? finY+height-fm.getDescent() :
+				finY + height;
 			
-			/*int width = pp.stringWidth(e.getWord());
-			//int height = pp.getMaxAscent();
-			int height = pp.getHeight() - pp.getDescent();
-			int[] dx = {0,-1,-1,-1,0,1,1,1};
-			int[] dy = {-1,-1,0,1,1,1,0,-1};
-			e.setDimensions(x, y, width, height);
-			boolean ok = false;
-			if(drawnWords.size()>0) {
-				while(!ok) {
-					for(Word item : drawnWords) {
-						if(e.intersects(item)) {
-							ok = false;
-							break;
-						}
-						else {
-							ok = true;
-						}
-					}
-					if(ok) { break; } 
-					e.changeX(dx[i]);
-					e.changeY(dy[i]);
-					}
-			}
-				drawnWords.add(e);
-				//w.setColor(background);
-				//rectangle color
-				w.drawRect(e.x, e.y, e.width, e.height);
-				w.drawString(e.getWord(), e.x, e.y+height-pp.getDescent());
-				i++;
-				i%=8;*/
+			w.drawString(e.getWord(), finX, placeY - (height - bounds.height)/2);
+			
 				
 				
 		}
