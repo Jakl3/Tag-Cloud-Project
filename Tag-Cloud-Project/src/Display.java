@@ -20,7 +20,7 @@ public class Display extends Canvas  {
 		System.out.println("AA" + words);
 		setBackground(background);
 		
-		SCALE = max/250.0;
+		SCALE = max/100.0;
 		System.out.println(SCALE);
 	}
 	
