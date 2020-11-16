@@ -27,6 +27,7 @@ public class Display extends Canvas  {
 		System.out.println(SCALE);
 	}
 	
+	// paint method
 	public void paint(Graphics w) {
 		ArrayList<Rectangle> drawnWords = new ArrayList<>();
 		
