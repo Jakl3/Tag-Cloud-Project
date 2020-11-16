@@ -17,20 +17,24 @@ public class Display extends Canvas  {
 		words = new ArrayList<Word>();
 		visited = new boolean[5000][5000];
 		double avg = 0, count = 0;
+		double sum = 0; double avgmax = 0; 
 		for(Map.Entry<String,Integer> k : w.entrySet()) {
-			if(k.getValue()>2) {
-				count++;
+			if(count<5) {avgmax += k.getValue();  count++;}
+			if(k.getValue()>5) {
 				avg+=k.getValue();
 			}
+			sum += k.getValue();
 			words.add(new Word(k.getKey(),k.getValue()));
 		}
-		avg/=count;
+		avgmax/=count;
 		System.out.println(words);
-		System.out.println(words.size());
+		System.out.println(sum);
 		setBackground(background);
 		
-		SCALE = avg>=5.0?(avg/(avg*1.667)):max/250.0;
-		System.out.println(avg);
+		SCALE = ((double)avgmax/100.0);
+				//avg>15?avg/(max/avg):avg>=5.0?(avg/(avg*1.667)):max/250.0;
+				//avg>=5.0?(avg/(avg*1.667)):max/250.0;
+		System.out.println(avgmax +  " ");
 		System.out.println(SCALE);
 	}
 	

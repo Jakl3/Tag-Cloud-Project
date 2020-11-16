@@ -10,7 +10,7 @@ public class Main extends JFrame {
 	
 	static Data site;
 	static Display disp;
-	static final int WIDTH = 1200, HEIGHT = 800;
+	static final int WIDTH = 1200, HEIGHT = 900;
 	
 	public Main() {
 		super("Tag Cloud Project - Jack Le & Nathan Nguyen");
@@ -54,7 +54,7 @@ public class Main extends JFrame {
 		/*Scanner kb = new Scanner(System.in);
 		System.out.println("What website would you like to make a tag cloud out of?");
 		String url = kb.nextLine();*/
-		String url = "https://www.gensh.in/";
+		String url = "https://www.foxnews.com/";
 		Scraper scr = new Scraper(url);
 		String s = scr.getWebsite();
 		System.out.println(s);
