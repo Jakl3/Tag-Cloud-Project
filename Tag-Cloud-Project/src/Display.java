@@ -4,16 +4,18 @@ import java.awt.font.GlyphVector;
 import java.util.*;
 import javax.swing.*;
 
-public class Display extends JPanel  {
+public class Display extends Canvas  {
 	
 	private final Color background = Color.BLACK;
 	private ArrayList<Word> words;
 	private double SCALE;
 	private static final int centerX = Main.WIDTH/2, centerY = Main.HEIGHT/2;
+	private boolean[][] visited;
 	
 	public Display(int max, Map<String,Integer> w) {
 		// Rank words by rank
 		words = new ArrayList<Word>();
+		visited = new boolean[5000][5000];
 		for(Map.Entry<String,Integer> k : w.entrySet()) {
 			words.add(new Word(k.getKey(),k.getValue()));
 		}
@@ -21,7 +23,7 @@ public class Display extends JPanel  {
 		System.out.println(words.size());
 		setBackground(background);
 		
-		SCALE = max/100.0;
+		SCALE = max/250.0;
 		System.out.println(SCALE);
 	}
 	
@@ -40,12 +42,12 @@ public class Display extends JPanel  {
 			int width = fm.stringWidth(e.getWord());
 			width += Math.sqrt(width)/3;
 			int height = e.getWord().matches(".*[gjpqy].*") ? h1 : h1 - fm.getDescent();
-			
 			int finX = 0, finY = 0;
 			double mindis = 1e8;
 			Rectangle end = new Rectangle();
 			for(int i = 0; i < Main.WIDTH; i++) {
 				height: for(int j = 0; j < Main.HEIGHT; j++) {
+					if(visited[i][j]) continue;
 					Rectangle pos = new Rectangle(i,j,width,height);
 			        
 					for(Rectangle item : drawnWords) {
@@ -69,20 +71,26 @@ public class Display extends JPanel  {
 					}
 				}
 			}
-			
 			drawnWords.add(end);
-
-			//w.drawRect(end.x, end.y, end.width, end.height);
-			
+			editVisited(end.x,end.y,end.width,end.height);
+			w.drawRect(end.x, end.y, end.width, end.height);
 			int placeY = e.getWord().matches(".*[gjpqy].*") ? finY+height-fm.getDescent() :
 				finY + height;
-			
 			w.drawString(e.getWord(), finX, placeY - (height - bounds.height)/2);
 			
 		}
 		
 		System.out.println("DONE");
 		
+	}
+	
+	public void editVisited(int x, int y, int width, int height) {
+		// i is row, j is column
+		for(int i = y; i <= y+height; i++) {
+			for(int j = x; j <= x+width; j++) {
+				visited[i][j] = true;
+			}
+		}
 	}
 	
 	public Rectangle getBounds(Graphics2D g, String s, int x, int y) {
