@@ -4,7 +4,7 @@ import java.awt.font.GlyphVector;
 import java.util.*;
 import javax.swing.*;
 
-public class Display extends Canvas  {
+public class Display extends JPanel  {
 	
 	private final Color background = Color.BLACK;
 	private ArrayList<Word> words;
@@ -17,7 +17,8 @@ public class Display extends Canvas  {
 		for(Map.Entry<String,Integer> k : w.entrySet()) {
 			words.add(new Word(k.getKey(),k.getValue()));
 		}
-		System.out.println("AA" + words);
+		System.out.println(words);
+		System.out.println(words.size());
 		setBackground(background);
 		
 		SCALE = max/100.0;

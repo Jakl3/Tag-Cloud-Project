@@ -16,8 +16,8 @@ public class Main extends JFrame {
 		super("Tag Cloud Project - Jack Le & Nathan Nguyen");
 		
 		setSize(WIDTH,HEIGHT);
-		setBackground(Color.BLACK);
 		getContentPane().add(disp);
+		setBackground(Color.BLACK);
 		setVisible(true);
 		setLocationRelativeTo(null);
 		
@@ -54,9 +54,10 @@ public class Main extends JFrame {
 		/*Scanner kb = new Scanner(System.in);
 		System.out.println("What website would you like to make a tag cloud out of?");
 		String url = kb.nextLine();*/
-		String url = "https://genshin.cc/";
+		String url = "https://www.genshin.cc/";
 		Scraper scr = new Scraper(url);
 		String s = scr.getWebsite();
+		System.out.println(s);
 		site = new Data(s);	
 		disp = new Display(site.getMax(),site.getCloud());
 		
