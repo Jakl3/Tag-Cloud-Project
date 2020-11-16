@@ -45,9 +45,9 @@ public class Display extends Canvas  {
 			int finX = 0, finY = 0;
 			double mindis = 1e8;
 			Rectangle end = new Rectangle();
-			for(int i = 0; i < Main.WIDTH; i++) {
-				height: for(int j = 0; j < Main.HEIGHT; j++) {
-					if(visited[i][j]) continue;
+			for(int i = 0; i < Main.WIDTH; i+=3) {
+				height: for(int j = 0; j < Main.HEIGHT; j+=3) {
+					//if(visited[i][j]) continue;
 					Rectangle pos = new Rectangle(i,j,width,height);
 			        
 					for(Rectangle item : drawnWords) {
@@ -73,7 +73,7 @@ public class Display extends Canvas  {
 			}
 			drawnWords.add(end);
 			editVisited(end.x,end.y,end.width,end.height);
-			w.drawRect(end.x, end.y, end.width, end.height);
+			//w.drawRect(end.x, end.y, end.width, end.height);
 			int placeY = e.getWord().matches(".*[gjpqy].*") ? finY+height-fm.getDescent() :
 				finY + height;
 			w.drawString(e.getWord(), finX, placeY - (height - bounds.height)/2);
