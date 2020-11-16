@@ -45,8 +45,8 @@ public class Display extends Canvas  {
 			int finX = 0, finY = 0;
 			double mindis = 1e8;
 			Rectangle end = new Rectangle();
-			for(int i = 0; i < Main.WIDTH; i+=3) {
-				height: for(int j = 0; j < Main.HEIGHT; j+=3) {
+			for(int i = 0; i < Main.WIDTH; i+=5) {
+				height: for(int j = 0; j < Main.HEIGHT; j+=5) {
 					//if(visited[i][j]) continue;
 					Rectangle pos = new Rectangle(i,j,width,height);
 			        
