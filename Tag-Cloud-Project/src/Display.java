@@ -16,14 +16,21 @@ public class Display extends Canvas  {
 		// Rank words by rank
 		words = new ArrayList<Word>();
 		visited = new boolean[5000][5000];
+		double avg = 0, count = 0;
 		for(Map.Entry<String,Integer> k : w.entrySet()) {
+			if(k.getValue()>2) {
+				count++;
+				avg+=k.getValue();
+			}
 			words.add(new Word(k.getKey(),k.getValue()));
 		}
+		avg/=count;
 		System.out.println(words);
 		System.out.println(words.size());
 		setBackground(background);
 		
-		SCALE = max/250.0;
+		SCALE = avg>=5.0?(avg/(avg*1.667)):max/250.0;
+		System.out.println(avg);
 		System.out.println(SCALE);
 	}
 	
