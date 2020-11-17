@@ -17,7 +17,7 @@ public class Display extends Canvas  {
 		double avg = 0, count = 0;
 		double sum = 0; double avgmax = 0; 
 		for(Map.Entry<String,Integer> k : w.entrySet()) {
-			if(count<5) {avgmax += k.getValue();  count++;}
+			if(count<7) {avgmax += k.getValue();  count++;}
 			if(k.getValue()>5) {
 				avg+=k.getValue();
 			}
