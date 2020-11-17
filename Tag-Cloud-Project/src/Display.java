@@ -10,12 +10,10 @@ public class Display extends Canvas  {
 	private ArrayList<Word> words;
 	private double SCALE;
 	private static final int centerX = Main.WIDTH/2, centerY = Main.HEIGHT/2;
-	private boolean[][] visited;
 	
 	public Display(int max, Map<String,Integer> w) {
 		// Rank words by rank
 		words = new ArrayList<Word>();
-		visited = new boolean[5000][5000];
 		double avg = 0, count = 0;
 		double sum = 0; double avgmax = 0; 
 		for(Map.Entry<String,Integer> k : w.entrySet()) {
@@ -36,13 +34,12 @@ public class Display extends Canvas  {
 				//avg>15?avg/(max/avg):avg>=5.0?(avg/(avg*1.667)):max/250.0;
 				//avg>=5.0?(avg/(avg*1.667)):max/250.0;
 		System.out.println(avgmax +  " ");
-		System.out.println(SCALE);
+		System.out.println("scale " + SCALE);
 	}
 	
 	// paint method
 	public void paint(Graphics w) {
 		ArrayList<Rectangle> drawnWords = new ArrayList<>();
-		
 		for(Word e : words) {
 			w.setFont(new Font(Font.SANS_SERIF, Font.BOLD, (int)(e.getWeight()/SCALE)));
 			//w.setFont(new Font(Font.SANS_SERIF, Font.BOLD, e.getWeight()));
@@ -54,27 +51,33 @@ public class Display extends Canvas  {
 			int h1 = fm.getHeight() - fm.getDescent();
 			int width = fm.stringWidth(e.getWord());
 			width += Math.sqrt(width)/3;
+			
 			int height = e.getWord().matches(".*[gjpqy].*") ? h1 : h1 - fm.getDescent();
+			//System.out.println(height);
+			height = e.getWord().matches(".*[bdfijklt].*") ? height : height - fm.getDescent();
+			//System.out.println(height);
 			int finX = 0, finY = 0;
 			double mindis = 1e8;
 			Rectangle end = new Rectangle();
 			for(int i = 0; i < Main.WIDTH; i+=5) {
-				height: for(int j = 0; j < Main.HEIGHT; j+=5) {
-					//if(visited[i][j]) continue;
+				for(int j = 0; j < Main.HEIGHT; j+=5) {
+					//if(Math.abs(Main.WIDTH/2 - i) < 100 && Math.abs(Main.HEIGHT/2-j) < 100) continue;
 					Rectangle pos = new Rectangle(i,j,width,height);
 			        
+					boolean ok = true;
 					for(Rectangle item : drawnWords) {
 						if(pos.intersects(item)) {
-							continue height;
+							ok = false;
+							break;
 						}
 					}
+					if(!ok) continue;
 					
 					double midRectX = pos.getCenterX();
 					double midRectY = pos.getCenterY();
 					
 					double dis = distance(centerX,midRectX,centerY,midRectY);
 					
-					//System.out.println("dis: " + dis + " mindis: " + mindis);
 					if(dis < mindis) {
 						//System.out.println(dis + " " + mindis + "rep");
 						mindis = dis;
@@ -82,28 +85,36 @@ public class Display extends Canvas  {
 						finX = i;
 						finY = j;
 					}
+					
+					if(dis < 10) {
+						System.out.println(e);
+						System.out.println(drawnWords);
+						for(Rectangle item : drawnWords) {
+							if(pos.intersects(item)) {
+								System.out.println("NOPEEEEEEEEEEEEEEEE");
+								return;
+							}
+						}
+					}
 				}
 			}
 			drawnWords.add(end);
-			editVisited(end.x,end.y,end.width,end.height);
-			//w.drawRect(end.x, end.y, end.width, end.height);
-			int placeY = e.getWord().matches(".*[gjpqy].*") ? finY+height-fm.getDescent() :
-				finY + height;
-			w.drawString(e.getWord(), finX, placeY - (height - bounds.height)/2);
+			w.drawRect(end.x, end.y, end.width, end.height);
+			//visited[end.x][end.y] = true; 
+			
+			int placeY = 0;
+			if(e.getWord().matches(".*[gjpqy].*")) {
+				placeY = finY+height-fm.getDescent();
+			}
+			else {
+				placeY = finY + height;
+			}
+				
+			w.drawString(e.getWord(), finX+(int)(Math.sqrt(width)/3), placeY - (height - bounds.height)/2);
 			
 		}
 		
 		System.out.println("DONE");
-		
-	}
-	
-	public void editVisited(int x, int y, int width, int height) {
-		// i is row, j is column
-		for(int i = y; i <= y+height; i++) {
-			for(int j = x; j <= x+width; j++) {
-				visited[i][j] = true;
-			}
-		}
 	}
 	
 	public Rectangle getBounds(Graphics2D g, String s, int x, int y) {

@@ -30,15 +30,17 @@ public class Test extends JFrame {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		
+		System.out.println("x".matches(".*[gjpqy].*"));
 		new Test();
 		//kb.close();
 	}
 	
 	private class Bruh extends Canvas{
 		public void paint(Graphics g) {
-			g.drawRect(20, 20, 100, 100);
-			g.drawRect(20, 120, 100, 100);
+			g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, (int)(800/3.7460000000000004)));
+			FontMetrics fm = g.getFontMetrics();
+			g.drawString("X", 400, 400+fm.getHeight()-fm.getDescent()-fm.getDescent());
+			g.drawRect(400,400,fm.stringWidth("X"), fm.getHeight()-fm.getDescent()-fm.getDescent());
 		}
 	}
 }
