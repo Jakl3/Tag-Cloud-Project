@@ -28,6 +28,7 @@ public class Display extends Canvas  {
 		}
 		avgmax/=count;
 		System.out.println(words);
+		System.out.println("number of words: " + words.size());
 		System.out.println(sum);
 		setBackground(background);
 		
