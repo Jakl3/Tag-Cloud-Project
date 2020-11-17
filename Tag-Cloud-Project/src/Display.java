@@ -27,19 +27,17 @@ public class Display extends Canvas  {
 		avgmax/=count;
 		System.out.println(words);
 		System.out.println("number of words: " + words.size());
-		System.out.println(sum);
 		setBackground(background);
 		
 		SCALE = ((double)avgmax/100.0);
 				//avg>15?avg/(max/avg):avg>=5.0?(avg/(avg*1.667)):max/250.0;
 				//avg>=5.0?(avg/(avg*1.667)):max/250.0;
-		System.out.println(avgmax +  " ");
-		System.out.println("scale " + SCALE);
+		System.out.println("scale: " + SCALE);
 	}
 	
 	// paint method
 	public void paint(Graphics w) {
-		ArrayList<Rectangle> drawnWords = new ArrayList<>();
+		ArrayList<Word> drawnWords = new ArrayList<>();
 		for(Word e : words) {
 			w.setFont(new Font(Font.SANS_SERIF, Font.BOLD, (int)(e.getWeight()/SCALE)));
 			//w.setFont(new Font(Font.SANS_SERIF, Font.BOLD, e.getWeight()));
@@ -56,13 +54,18 @@ public class Display extends Canvas  {
 			//System.out.println(height);
 			height = e.getWord().matches(".*[bdfijklt].*") ? height : height - fm.getDescent();
 			//System.out.println(height);
+			if(height<=0) { height = 1; }
+			if(width<=0) { width = 1; }
+			System.out.println(e.getWord() + " weight: " + e.getWeight() + " width: " + width + " height: " + height);
 			int finX = 0, finY = 0;
 			double mindis = 1e8;
-			Rectangle end = new Rectangle();
+			Word end = new Word();
 			for(int i = 0; i < Main.WIDTH; i+=5) {
 				for(int j = 0; j < Main.HEIGHT; j+=5) {
 					//if(Math.abs(Main.WIDTH/2 - i) < 100 && Math.abs(Main.HEIGHT/2-j) < 100) continue;
-					Rectangle pos = new Rectangle(i,j,width,height);
+					//Rectangle pos = new Rectangle(i,j,width,height);
+					Word pos = new Word(e.getWord(),e.getWeight());
+					pos.setDimensions(i, j, width, height);
 			        
 					boolean ok = true;
 					for(Rectangle item : drawnWords) {
@@ -99,7 +102,11 @@ public class Display extends Canvas  {
 				}
 			}
 			drawnWords.add(end);
-			w.drawRect(end.x, end.y, end.width, end.height);
+			
+			//draw the rectangle borders for each word
+			//w.drawRect(end.x, end.y, end.width, end.height);
+			
+			
 			//visited[end.x][end.y] = true; 
 			
 			int placeY = 0;
