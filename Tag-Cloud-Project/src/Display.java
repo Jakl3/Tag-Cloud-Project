@@ -86,7 +86,7 @@ public class Display extends Canvas  {
 						finY = j;
 					}
 					
-					if(dis < 10) {
+					/*if(dis < 10) {
 						System.out.println(e);
 						System.out.println(drawnWords);
 						for(Rectangle item : drawnWords) {
@@ -95,7 +95,7 @@ public class Display extends Canvas  {
 								return;
 							}
 						}
-					}
+					}*/
 				}
 			}
 			drawnWords.add(end);
