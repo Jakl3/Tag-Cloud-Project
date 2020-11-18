@@ -9,12 +9,14 @@ public class Word extends Rectangle {
 	private int weight;
 	private Color c;
 	public Word() {
-		c = new Color((int)(Math.random()*0x1000000));
+		//c = new Color((int)(Math.random()*0x1000000));
+		c = new Color((int)(Math.random()*175)+80, (int)(Math.random()*155)+100,(int)(Math.random()*175)+80);
 	}
 	public Word(String word, int weight) {
 		this.word = word;
 		this.weight = weight;
-		c = new Color((int)(Math.random()*0x1000000));
+		//c = new Color((int)(Math.random()*0x1000000));
+		c = new Color((int)(Math.random()*175)+80, (int)(Math.random()*155)+100,(int)(Math.random()*175)+80);
 	}
 	public Color getColor() {
 		return c;

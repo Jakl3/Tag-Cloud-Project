@@ -29,7 +29,7 @@ public class Display extends Canvas  {
 		System.out.println("number of words: " + words.size());
 		setBackground(background);
 		
-		SCALE = ((double)avgmax/100.0);
+		SCALE = ((double)avgmax/150.0);
 				//avg>15?avg/(max/avg):avg>=5.0?(avg/(avg*1.667)):max/250.0;
 				//avg>=5.0?(avg/(avg*1.667)):max/250.0;
 		System.out.println("scale: " + SCALE);
