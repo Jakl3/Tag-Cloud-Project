@@ -52,11 +52,11 @@ public class Display extends Canvas  {
 			
 			int height = e.getWord().matches(".*[gjpqy].*") ? h1 : h1 - fm.getDescent();
 			//System.out.println(height);
-			height = e.getWord().matches(".*[bdfijklt].*") ? height : height - fm.getDescent();
+			height = e.getWord().matches(".*[bdfhijklt].*") ? height : height - fm.getDescent();
 			//System.out.println(height);
 			if(height<=0) { height = 1; }
 			if(width<=0) { width = 1; }
-			System.out.println(e.getWord() + " weight: " + e.getWeight() + " width: " + width + " height: " + height);
+			//System.out.println(e.getWord() + " weight: " + e.getWeight() + " width: " + width + " height: " + height);
 			int finX = 0, finY = 0;
 			double mindis = 1e8;
 			Word end = new Word();
