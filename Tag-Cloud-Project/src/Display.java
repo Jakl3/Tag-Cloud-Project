@@ -1,21 +1,10 @@
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
+import java.awt.*;
 import java.awt.font.FontRenderContext;
 import java.awt.font.GlyphVector;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.*;
+import javax.swing.*;
 
-import javax.imageio.ImageIO;
-
-public class Display extends Canvas  {
+public class Display extends JPanel  {
 	
 	private final Color background = Color.BLACK;
 	private ArrayList<Word> words;
@@ -48,15 +37,6 @@ public class Display extends Canvas  {
 	
 	// paint method
 	public void paint(Graphics w) {
-		
-		  /*BufferedImage img = null;
-		  try {
-			  img = ImageIO.read(new File("image.png"));
-		  } catch (IOException e) { 
-			  System.out.println("no image");
-		  }*/
-		
-		
 		ArrayList<Word> drawnWords = new ArrayList<>();
 		for(Word e : words) {
 			w.setFont(new Font(Font.SANS_SERIF, Font.BOLD, (int)(e.getWeight()/SCALE)));
@@ -124,7 +104,7 @@ public class Display extends Canvas  {
 			drawnWords.add(end);
 			
 			//draw the rectangle borders for each word
-			w.drawRect(end.x, end.y, end.width, end.height);
+			//w.drawRect(end.x, end.y, end.width, end.height);
 			
 			
 			//visited[end.x][end.y] = true; 
@@ -138,8 +118,6 @@ public class Display extends Canvas  {
 			}
 				
 			w.drawString(e.getWord(), finX+(int)(Math.sqrt(width)/3), placeY - (height - bounds.height)/2);
-			
-			//w.drawImage(, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9)
 			
 		}
 		

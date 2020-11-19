@@ -15,14 +15,15 @@ public class Main extends JFrame {
 	
 	public Main() {
 		super("Tag Cloud Project - Jack Le & Nathan Nguyen");
-		
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(WIDTH,HEIGHT);
-		getContentPane().add(disp);
 		setBackground(Color.BLACK);
+		getContentPane().add(disp);
+		
+		
 		setVisible(true);
 		setLocationRelativeTo(null);
 		
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
@@ -60,7 +61,13 @@ public class Main extends JFrame {
 		String s = scr.getWebsite();
 		//System.out.println(s);
 		site = new Data(s);	
+		
+		Map<String,Integer> tester = new TreeMap<>();
+		tester.put("my", 10);
+		tester.put("a", 50);
+		tester.put("use", 6);
 		disp = new Display(site.getMax(),site.getCloud());
+		//disp = new Display(site.getMax(),tester);
 		
 		/*System.out.println(s);
 		
