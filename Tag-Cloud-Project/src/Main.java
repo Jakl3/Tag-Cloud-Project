@@ -10,7 +10,7 @@ public class Main extends JFrame {
 	
 	static Data site;
 	static Display disp;
-	static final int WIDTH = 1200, HEIGHT = 900;
+	static final int WIDTH = 1200, HEIGHT = 1000;
 	static BufferedImage image;
 	
 	public Main() {
@@ -54,7 +54,8 @@ public class Main extends JFrame {
 		/*Scanner kb = new Scanner(System.in);
 		System.out.println("What website would you like to make a tag cloud out of?");
 		String url = kb.nextLine();*/
-		String url = "https://www.espn.com/";
+		//String url = "https://www.espn.com/";
+		String url = "https://www.xvideos.com/";
 		Scraper scr = new Scraper(url);
 		String s = scr.getWebsite();
 		//System.out.println(s);

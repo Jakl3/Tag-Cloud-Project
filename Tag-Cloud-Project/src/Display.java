@@ -104,7 +104,7 @@ public class Display extends Canvas  {
 			drawnWords.add(end);
 			
 			//draw the rectangle borders for each word
-			//w.drawRect(end.x, end.y, end.width, end.height);
+			w.drawRect(end.x, end.y, end.width, end.height);
 			
 			
 			//visited[end.x][end.y] = true; 
@@ -118,6 +118,8 @@ public class Display extends Canvas  {
 			}
 				
 			w.drawString(e.getWord(), finX+(int)(Math.sqrt(width)/3), placeY - (height - bounds.height)/2);
+			
+			//w.drawImage(, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9)
 			
 		}
 		
