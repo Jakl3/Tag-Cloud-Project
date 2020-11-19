@@ -1,8 +1,19 @@
-import java.awt.*;
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.font.FontRenderContext;
 import java.awt.font.GlyphVector;
-import java.util.*;
-import javax.swing.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Map;
+
+import javax.imageio.ImageIO;
 
 public class Display extends Canvas  {
 	
@@ -37,6 +48,15 @@ public class Display extends Canvas  {
 	
 	// paint method
 	public void paint(Graphics w) {
+		
+		  /*BufferedImage img = null;
+		  try {
+			  img = ImageIO.read(new File("image.png"));
+		  } catch (IOException e) { 
+			  System.out.println("no image");
+		  }*/
+		
+		
 		ArrayList<Word> drawnWords = new ArrayList<>();
 		for(Word e : words) {
 			w.setFont(new Font(Font.SANS_SERIF, Font.BOLD, (int)(e.getWeight()/SCALE)));
