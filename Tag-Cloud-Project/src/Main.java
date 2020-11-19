@@ -55,17 +55,18 @@ public class Main extends JFrame {
 		/*Scanner kb = new Scanner(System.in);
 		System.out.println("What website would you like to make a tag cloud out of?");
 		String url = kb.nextLine();*/
-		//String url = "https://www.espn.com/";
-		String url = "https://www.xvideos.com/";
+		String url = "https://www.espn.com/";
+		//String url = "https://www.xvideos.com/";
+		//String url = "https://genshin.cc/";
 		Scraper scr = new Scraper(url);
 		String s = scr.getWebsite();
 		//System.out.println(s);
 		site = new Data(s);	
 		
 		Map<String,Integer> tester = new TreeMap<>();
-		tester.put("my", 10);
-		tester.put("a", 50);
-		tester.put("use", 6);
+		tester.put("fsadfsaf", 10);
+		tester.put("fsdafsffsadf", 10);
+		tester.put("fdsafsagsag", 10);
 		disp = new Display(site.getMax(),site.getCloud());
 		//disp = new Display(site.getMax(),tester);
 		
