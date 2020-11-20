@@ -1,7 +1,7 @@
 import java.util.*;
 import java.util.regex.*;
 
-public class test1 {
+public class Test1 {
 
 	public static void main(String[] args) {
 	    String str = "<h1> word </h1> worth 10\r\n" + 
