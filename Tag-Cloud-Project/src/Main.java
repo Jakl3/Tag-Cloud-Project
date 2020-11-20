@@ -3,8 +3,15 @@ import java.util.Map;
 import java.util.TreeMap;
 import javax.swing.JFrame;
 @SuppressWarnings("serial")
-//Comp Sci 3 Tag Cloud Project - Nathan Nguyen(7th period) & Jack Le (4th Period)
+//Computer Science 3 Tag Cloud Project - Nathan Nguyen(7th period) & Jack Le (4th Period)
 
+/*
+ * Main.java - extends the JFrame and sets it up. Instantiates the other classes
+ * and allows them to interact with each other. It is the file that is run to
+ * start the program.
+ * 
+ * @author Nathan Nguyen
+ */
 public class Main extends JFrame {
 	
 	private static Data site;
