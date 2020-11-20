@@ -1,9 +1,9 @@
 import java.awt.Color;
 import java.util.Map;
 import java.util.TreeMap;
-
 import javax.swing.JFrame;
 @SuppressWarnings("serial")
+//Comp Sci 3 Tag Cloud Project - Nathan Nguyen(7th period) & Jack Le (4th Period)
 
 public class Main extends JFrame {
 	
