@@ -52,11 +52,6 @@ public class Display extends JPanel  {
 	 * is defined as the position that has the smallest
 	 * distance to the center of the window.
 	 * 
-	 * Due to how Graphics and Painting works in Java,
-	 * this method will run at least three times if left
-	 * alone. However, the graphics displayed will not change
-	 * with each run of the method.
-	 * 
 	 * @author Jack Le and Nathan Nguyen
 	 */
 	public void paint(Graphics w) {
