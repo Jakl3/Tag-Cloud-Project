@@ -1,11 +1,21 @@
 import java.util.*;
 import java.util.regex.*;
 import java.io.*;
+@SuppressWarnings("serial")
 
+/**
+ * Receives the full HTML of a website in String form as an input. Assigns
+ * the weight of each word enclosed in a tag based on the weight of every
+ * tag that is enclosing the word. It then stores that weight inside a map
+ * for quick access.
+ * 
+ * @author Jack Le
+ */
 public class Data {
 	
 	// Pattern
-	private static final Pattern p = Pattern.compile("(<(?<capture1>h\\d|p|title|li)>\\s*(?<word1>.*?)\\s*</\\k<capture1>>)|(<a (?<capture2>href).*?=.*?\".*?\">\\s*(?<word2>.*?)\\s*</a>)",Pattern.DOTALL);
+	private static final Pattern p = Pattern.compile("(<(?<capture1>h\\d|p|title|li)>\\s*(?<word1>.*?)\\s*</\\k<capture1>>)|"
+			+ "(<a (?<capture2>href).*?=.*?\".*?\">\\s*(?<word2>.*?)\\s*</a>)",Pattern.DOTALL);
 	
 	// Weights of each tag
 	private static final Map<String,Integer> worth = new HashMap<String,Integer>() {{
@@ -20,11 +30,10 @@ public class Data {
 			put("li",1);
 			put("href",5);
 	}};
-		
+	
+	// Instance Variables
 	private List<String> tags;
 	private Map<String,Integer> cloud;
-	
-	
 	
 	// Constructor
 	public Data(String website) {
@@ -41,6 +50,7 @@ public class Data {
 		cloud = sortByValue(cloud);
 	}
 	
+	// Returns the maximum weight of all words included in the Tag Cloud
 	public int getMax() {
 		return Collections.max(cloud.values());
 	}
@@ -69,12 +79,12 @@ public class Data {
 	    }
 	}
 	
-	// Returns the list of tags and words
+	// Returns the list of words and their associated tag
 	public List<String> getTags() {
 		return tags;
 	}
 	
-	// Returns the Tag Cloud
+	// Returns the Tag Cloud map
 	public Map<String,Integer> getCloud() {
 		return cloud;
 	}
