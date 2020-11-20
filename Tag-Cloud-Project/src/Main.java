@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.TreeMap;
 import javax.swing.JFrame;
 @SuppressWarnings("serial")
@@ -14,10 +15,12 @@ import javax.swing.JFrame;
  */
 public class Main extends JFrame {
 	
+	//instance variables
 	private static Data site;
 	private static Display disp;
 	public static final int WIDTH = 1200, HEIGHT = 950;
 	
+	//constructor, sets JFrame configurations
 	public Main() {
 		super("Tag Cloud Project - Jack Le & Nathan Nguyen");
 		
@@ -30,35 +33,23 @@ public class Main extends JFrame {
 		setLocationRelativeTo(null);
 		
 	}
-		
+	
+	//allows user to input website link to generate cloud from
 	public static void main(String[] args) throws Exception {
-		/*Scanner kb = new Scanner(System.in);
-		System.out.println("What website would you like to make a tag cloud out of?");
-		String url = kb.nextLine();*/
+		Scanner kb = new Scanner(System.in);
+		System.out.println("Enter the website you want to generate a tag cloud from.");
+		String url = kb.nextLine();
+		
 		//String url = "https://www.espn.com/";
-		//String url = "https://www.xvideos.com/";
-		String url = "https://www.cfisd.net/en";
-		//String url = "https://www.pornhub.com/";
+		//String url = "https://www.cfisd.net/en";
 		System.out.println(url);
-		//String url = "fsafasf";
+		
 		Scraper scr = new Scraper(url);
 		String s = scr.getWebsite();
 		site = new Data(s);	
-		
-		Map<String,Integer> tester = new TreeMap<>();
-		tester.put("fsadfsaf", 10);
-		tester.put("fsdafsffsadf", 10);
-		tester.put("fdsafsagsag", 10);
 		disp = new Display(site.getMax(),site.getCloud());
-		//disp = new Display(site.getMax(),tester);
-		
-		/*System.out.println(s);
-		
-		System.out.println(site.getCloud());
-		System.out.println("MAX " + site.getMax());*/
-		
+
 		new Main();
-		//kb.close();
 	}
 }
 

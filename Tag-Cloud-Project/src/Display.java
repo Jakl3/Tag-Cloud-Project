@@ -12,6 +12,10 @@ import java.util.Map;
 import javax.swing.JPanel;
 @SuppressWarnings("serial")
 
+/*
+ * Display.java - Extends JPanel. Draws the words after receiving data from the
+ * Data class and arranges them in the tag cloud pattern.
+ */
 public class Display extends JPanel  {
 	
 	private final Color background = Color.BLACK;
