@@ -1,7 +1,6 @@
-import java.awt.Color;
-import java.util.Scanner;
-
-import javax.swing.JFrame;
+import java.awt.*;
+import java.util.*;
+import javax.swing.*;
 @SuppressWarnings("serial")
 
 /**
@@ -14,9 +13,11 @@ import javax.swing.JFrame;
 public class Main extends JFrame {
 	
 	// Instance variables
+	public static final int WIDTH = 1200, HEIGHT = 950;
+	private static final String defaultWebsite = "https://www.cfisd.net/en";
 	private static Data site;
 	private static Display disp;
-	public static final int WIDTH = 1200, HEIGHT = 950;
+	
 	
 	// Constructor
 	public Main() {
@@ -34,17 +35,20 @@ public class Main extends JFrame {
 	public static void main(String[] args) throws Exception {
 		Scanner kb = new Scanner(System.in);
 		
+		// Introduction
+		System.out.println("Tag Cloud Project - CS3K 2020-2021");
+		System.out.println("Created by Jack Le (4th Period) and Nathan Nguyen (7th Period)\n");
+		
 		// Takes in keyboard input of the URL
 		System.out.println("Enter the website you want to generate a tag cloud from.");
 		System.out.println("Press \"Enter\" to use the default website");
 		String input = kb.nextLine();
-		String url = input.equals("") ? "https://www.cfisd.net/en" : input;
+		String url = input.equals("") ? defaultWebsite : input;
 		System.out.println("Creating Tag Cloud for \"" + url + "\"\n");
 		
 		// Instantiates the other classes and creates the Tag Cloud
 		Scraper scr = new Scraper(url);
-		String s = scr.getWebsite();
-		site = new Data(s);	
+		site = new Data(scr.getWebsite());	
 		disp = new Display(site.getCloud());
 		new Main();
 		

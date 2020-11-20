@@ -1,5 +1,4 @@
-import java.awt.Color;
-import java.awt.Rectangle;
+import java.awt.*;
 @SuppressWarnings("serial")
 
 /**

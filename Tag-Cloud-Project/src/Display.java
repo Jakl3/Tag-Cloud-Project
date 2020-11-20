@@ -1,15 +1,7 @@
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.font.FontRenderContext;
-import java.awt.font.GlyphVector;
-import java.util.ArrayList;
-import java.util.Map;
-
-import javax.swing.JPanel;
+import java.awt.*;
+import java.awt.font.*;
+import java.util.*;
+import javax.swing.*;
 @SuppressWarnings("serial")
 
 /** 
@@ -22,10 +14,10 @@ import javax.swing.JPanel;
 public class Display extends JPanel  {
 	
 	// Instance variables
-	private final Color background = Color.BLACK;
+	private static final Color background = Color.BLACK;
+	private static final int centerX = Main.WIDTH/2, centerY = Main.HEIGHT/2;
 	private ArrayList<Word> words;
 	private double SCALE;
-	private static final int centerX = Main.WIDTH/2, centerY = Main.HEIGHT/2;
 	private int cnt;
 	
 	/**

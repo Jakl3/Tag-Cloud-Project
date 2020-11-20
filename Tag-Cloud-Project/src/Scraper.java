@@ -1,11 +1,6 @@
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
+import java.io.*;
+import java.net.*;
+import java.util.*;
 
 /**
  * Establishes a connection with the website of a given
