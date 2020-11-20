@@ -37,8 +37,9 @@ public class Main extends JFrame {
 		// Takes in keyboard input of the URL
 		System.out.println("Enter the website you want to generate a tag cloud from.");
 		System.out.println("Press \"Enter\" to use the default website");
-		String url = kb.nextLine().equals("") ? "https://www.cfisd.net/en" : kb.nextLine();
-		System.out.println("Creating Tag Cloud for \"" + url + "\"");
+		String input = kb.nextLine();
+		String url = input.equals("") ? "https://www.cfisd.net/en" : input;
+		System.out.println("Creating Tag Cloud for \"" + url + "\"\n");
 		
 		// Instantiates the other classes and creates the Tag Cloud
 		Scraper scr = new Scraper(url);

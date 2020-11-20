@@ -4,6 +4,7 @@ import java.io.StringWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -23,24 +24,28 @@ public class Scraper  {
 	public Scraper(String url) throws Exception {
 		this.URL = url;
 		website = "";
-		setup();
+		connect();
 	}
 	
-	// Scrapes the website and stores the HTML into a string
-	private void setup() throws Exception {
+	// Establishes a connection with the site
+	private void connect() throws Exception {
 		long startTime = System.nanoTime();
-		
+		URL url;
+		URLConnection site;
 		try {
-			URL url = new URL(URL);
-			URLConnection site = url.openConnection();
+			url = new URL(URL);
+			site = url.openConnection();
 			site.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) "
 					+ "AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
 			site.connect();
-			Scanner f = new Scanner(site.getInputStream());
-			website = (f.useDelimiter( "\\Z" ).next().toLowerCase());
-			f.close();
-			
-			
+			setup(site);
+		}
+		// Error: The HTML when accessing the website as a user is empty
+		catch(NoSuchElementException e) {
+			url = new URL(URL);
+			site = url.openConnection();
+			site.connect();
+			setup(site);
 		}
 		// Error: The given URL is not a proper URL address
 		catch (MalformedURLException e) {
@@ -59,6 +64,13 @@ public class Scraper  {
 		
 		long endTime = System.nanoTime();
 		System.out.println("Time to scrape HTML: " + ((endTime - startTime)/1000000) + " ms");
+	}
+
+	// Scrapes the website and stores the HTML as a string
+	private void setup(URLConnection site) throws Exception {
+		Scanner f = new Scanner(site.getInputStream());
+		website = (f.useDelimiter( "\\Z" ).next().toLowerCase());
+		f.close();
 	}
 	
 	// Returns the string storing the HTML of the website
