@@ -32,9 +32,9 @@ public class Main extends JFrame {
 		/*Scanner kb = new Scanner(System.in);
 		System.out.println("What website would you like to make a tag cloud out of?");
 		String url = kb.nextLine();*/
-		String url = "https://www.espn.com/";
+		//String url = "https://www.espn.com/";
 		//String url = "https://www.xvideos.com/";
-		//String url = "https://genshin.cc/";
+		String url = "https://gensh.in/";
 		//String url = "https://www.pornhub.com/";
 		System.out.println(url);
 		//String url = "fsafasf";

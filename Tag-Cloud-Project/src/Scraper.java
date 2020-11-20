@@ -26,11 +26,6 @@ public class Scraper  {
 		setup();
 	}
 	
-	// Returns the string storing the HTML of the website
-	public String getWebsite() {
-		return website;
-	}
-	
 	// Scrapes the website and stores the HTML into a string
 	private void setup() throws Exception {
 		long startTime = System.nanoTime();
@@ -60,5 +55,10 @@ public class Scraper  {
 		
 		long endTime = System.nanoTime();
 		System.out.println("Scrape time: " + ((endTime - startTime)/1000000) + " ms");
+	}
+	
+	// Returns the string storing the HTML of the website
+	public String getWebsite() {
+		return website;
 	}
 }

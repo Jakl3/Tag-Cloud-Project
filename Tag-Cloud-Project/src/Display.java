@@ -50,7 +50,7 @@ public class Display extends JPanel  {
 
 			int finX = 0, finY = 0;
 			double mindis = 1e8;
-			Word end = new Word();
+			Word end = null;
 			for(int i = 0; i < Main.WIDTH; i+=5) {
 				for(int j = 0; j < Main.HEIGHT; j+=5) {
 					Word pos = new Word(word.getWord(),word.getWeight());

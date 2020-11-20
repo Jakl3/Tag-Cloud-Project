@@ -20,8 +20,9 @@ import java.util.regex.Pattern;
 public class Data {
 	
 	// Pattern
-	private static final Pattern p = Pattern.compile("(<(?<capture1>h\\d|p|title|li)>\\s*(?<word1>.*?)\\s*</\\k<capture1>>)|"
-			+ "(<a (?<capture2>href).*?=.*?\".*?\">\\s*(?<word2>.*?)\\s*</a>)",Pattern.DOTALL);
+	private static final Pattern p = Pattern.compile(
+			"(<(?<capture1>h\\d|p|title|li)>\\s*(?<word1>.*?)\\s*</\\k<capture1>>)|"
+			+ "(<a (?<capture2>href).*?>\\s*(?<word2>.*?)\\s*</a>)",Pattern.DOTALL);
 	
 	// Weights of each tag
 	private static final Map<String,Integer> worth = new HashMap<String,Integer>() {{
@@ -81,6 +82,7 @@ public class Data {
 	    		tag = m.group("capture2");
 	    		w = m.group("word2");
 	    	}
+	    		    	
 	    	w = w.replaceAll("\n","").replaceAll("\\s+"," ");
 	    	
 	    	getTags(w);
