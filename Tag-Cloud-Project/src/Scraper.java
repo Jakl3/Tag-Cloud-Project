@@ -1,10 +1,20 @@
-import java.util.*;
-import java.util.regex.*;
-import java.io.*;
-import java.net.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Scanner;
 
+/**
+ * Establishes a connection with the website of a given
+ * URL. It then reads in the entire HTML of that website
+ * and stores into a string, for quick access.
+ * 
+ * @author Jack Le
+ */
 public class Scraper  {
 	
+	// Instance Variables
 	private String URL;
 	private String website;
 	
@@ -15,7 +25,12 @@ public class Scraper  {
 		setup();
 	}
 	
-	// Scrapes the website and converts the HTML into a string
+	// Returns the string storing the HTML of the website
+	public String getWebsite() {
+		return website;
+	}
+	
+	// Scrapes the website and stores the HTML into a string
 	private void setup() throws Exception {
 		try {
 			URL url = new URL(URL);
@@ -28,18 +43,14 @@ public class Scraper  {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
 			System.out.println(sw.toString());
-			throw new MalformedURLException("This is not a proper URL");
+			throw new MalformedURLException("\"" + URL + "\"" + " is not a proper URL address");
 		}
-		// Error: Connection could not be opened with the website
+		// Error: A connection could not be established with the website
 		catch (IOException e) {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
 			System.out.println(sw.toString());
-			throw new IOException("Connection couldn't be opened");
+			throw new IOException("A connection could not be established with \"" + URL + "\"");
 		}
-	}
-	
-	public String getWebsite() {
-		return website;
 	}
 }
