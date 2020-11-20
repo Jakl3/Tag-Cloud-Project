@@ -59,7 +59,9 @@ public class Data {
 	private void createCloud() {
 		for(String item : tags) {
 			String[] temp = item.split(" ");
-			if(!cloud.containsKey(temp[1])) cloud.put(temp[1], 0);
+			if(!cloud.containsKey(temp[1])) {
+				cloud.put(temp[1], 0);
+			}
 			cloud.put(temp[1], cloud.get(temp[1])+worth.get(temp[0]));
 		}
 	}
