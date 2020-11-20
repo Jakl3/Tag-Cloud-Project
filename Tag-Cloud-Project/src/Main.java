@@ -34,15 +34,11 @@ public class Main extends JFrame {
 		//String url = "https://www.xvideos.com/";
 		String url = "https://www.cfisd.net/en";
 		//String url = "https://www.pornhub.com/";
-		PrintWriter out = new PrintWriter(new File("dab.txt"));
 		System.out.println(url);
 		//String url = "fsafasf";
 		Scraper scr = new Scraper(url);
 		String s = scr.getWebsite();
-		out.println(s);
 		site = new Data(s);	
-		
-		out.flush();
 		
 		Map<String,Integer> tester = new TreeMap<>();
 		tester.put("fsadfsaf", 10);
