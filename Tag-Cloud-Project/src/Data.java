@@ -46,19 +46,22 @@ public class Data {
 		tags = new ArrayList<String>();
 		cloud = new HashMap<String,Integer>();
 		getTags(website);
-		
-		for(String item : tags) {
-			String[] temp = item.split(" ");
-			if(!cloud.containsKey(temp[1])) cloud.put(temp[1], 0);
-			cloud.put(temp[1], cloud.get(temp[1])+worth.get(temp[0]));
-		}
-		
+		createCloud();
 		cloud = sortByValue(cloud);
 	}
 	
 	// Returns the maximum weight of all words included in the Tag Cloud
 	public int getMax() {
 		return Collections.max(cloud.values());
+	}
+	
+	// Creates the tag cloud with the given list of tags
+	private void createCloud() {
+		for(String item : tags) {
+			String[] temp = item.split(" ");
+			if(!cloud.containsKey(temp[1])) cloud.put(temp[1], 0);
+			cloud.put(temp[1], cloud.get(temp[1])+worth.get(temp[0]));
+		}
 	}
 	
 	// Finds groups of valid tags and words to include in the Tag Cloud
