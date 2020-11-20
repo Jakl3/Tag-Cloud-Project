@@ -99,8 +99,8 @@ public class Display extends JPanel  {
 	
 	public Rectangle getBounds(Graphics2D g, String s, int x, int y) {
 		FontRenderContext render = g.getFontRenderContext();
-        GlyphVector vec = g.getFont().createGlyphVector(render, s);
-        return vec.getPixelBounds(null, x, y);
+		GlyphVector vec = g.getFont().createGlyphVector(render, s);
+		return vec.getPixelBounds(null, x, y);
 	}
 	
 	public double distance(double x1, double x2, double y1, double y2) {
