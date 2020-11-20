@@ -43,11 +43,16 @@ public class Data {
 	
 	// Constructor
 	public Data(String website) {
+		long startTime = System.nanoTime();
+		
 		tags = new ArrayList<String>();
 		cloud = new HashMap<String,Integer>();
 		getTags(website);
 		createCloud();
 		cloud = sortByValue(cloud);
+		
+		long endTime = System.nanoTime();
+		System.out.println("Data time: " + ((endTime - startTime)/1000000) + " ms");
 	}
 	
 	// Returns the maximum weight of all words included in the Tag Cloud
@@ -55,15 +60,14 @@ public class Data {
 		return Collections.max(cloud.values());
 	}
 	
-	// Creates the tag cloud with the given list of tags
-	private void createCloud() {
-		for(String item : tags) {
-			String[] temp = item.split(" ");
-			if(!cloud.containsKey(temp[1])) {
-				cloud.put(temp[1], 0);
-			}
-			cloud.put(temp[1], cloud.get(temp[1])+worth.get(temp[0]));
-		}
+	// Returns the list of words and their associated tag
+	public List<String> getTags() {
+		return tags;
+	}
+	
+	// Returns the Tag Cloud map
+	public Map<String,Integer> getCloud() {
+		return cloud;
 	}
 	
 	// Finds groups of valid tags and words to include in the Tag Cloud
@@ -90,14 +94,15 @@ public class Data {
 	    }
 	}
 	
-	// Returns the list of words and their associated tag
-	public List<String> getTags() {
-		return tags;
-	}
-	
-	// Returns the Tag Cloud map
-	public Map<String,Integer> getCloud() {
-		return cloud;
+	// Creates the tag cloud with the given list of tags
+	private void createCloud() {
+		for(String item : tags) {
+			String[] temp = item.split(" ");
+			if(!cloud.containsKey(temp[1])) {
+				cloud.put(temp[1], 0);
+			}
+			cloud.put(temp[1], cloud.get(temp[1])+worth.get(temp[0]));
+		}
 	}
 	
 	// Sort the map by its values

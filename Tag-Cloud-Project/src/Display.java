@@ -29,6 +29,7 @@ public class Display extends JPanel  {
 	}
 	
 	public void paint(Graphics w) {
+		long startTime = System.nanoTime();
 		ArrayList<Word> drawnWords = new ArrayList<>();
 		for(Word word : words) {
 			w.setFont(new Font(Font.SANS_SERIF, Font.BOLD, (int)(word.getWeight()/SCALE)));
@@ -92,6 +93,8 @@ public class Display extends JPanel  {
 		}
 		
 		System.out.println("DONE");
+		long endTime = System.nanoTime();
+		System.out.println("Paint time: " + ((endTime - startTime)/1000000) + " ms");
 	}
 	
 	public Rectangle getBounds(Graphics2D g, String s, int x, int y) {

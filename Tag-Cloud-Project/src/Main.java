@@ -1,7 +1,8 @@
 import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -16,7 +17,8 @@ public class Main extends JFrame {
 	
 	public Main() {
 		super("Tag Cloud Project - Jack Le & Nathan Nguyen");
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(WIDTH,HEIGHT);
 		setBackground(Color.BLACK);
 		getContentPane().add(disp);
@@ -24,15 +26,10 @@ public class Main extends JFrame {
 		setVisible(true);
 		setLocationRelativeTo(null);
 		
-		addKeyListener(new KeyAdapter() {
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
-					dispose();
-			}
-		});
 		
-		System.out.println("size: " + getContentPane().getSize().toString());
-		System.out.println("height: " + getContentPane().getHeight());
+		
+		//System.out.println("size: " + getContentPane().getSize().toString());
+		//System.out.println("height: " + getContentPane().getHeight());
 		
 	}
 		
@@ -40,9 +37,11 @@ public class Main extends JFrame {
 		/*Scanner kb = new Scanner(System.in);
 		System.out.println("What website would you like to make a tag cloud out of?");
 		String url = kb.nextLine();*/
-		//String url = "https://www.espn.com/";
-		String url = "https://www.xvideos.com/";
+		String url = "https://www.espn.com/";
+		//String url = "https://www.xvideos.com/";
 		//String url = "https://genshin.cc/";
+		//String url = "https://www.pornhub.com/";
+		System.out.println(url);
 		//String url = "fsafasf";
 		Scraper scr = new Scraper(url);
 		String s = scr.getWebsite();

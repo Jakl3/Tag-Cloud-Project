@@ -3,6 +3,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.Scanner;
 
 /**
@@ -32,10 +33,14 @@ public class Scraper  {
 	
 	// Scrapes the website and stores the HTML into a string
 	private void setup() throws Exception {
+		long startTime = System.nanoTime();
+		
 		try {
 			URL url = new URL(URL);
-			Scanner f = new Scanner(url.openStream());
-			website = f.useDelimiter("\\Z").next().toLowerCase();
+			URLConnection site = url.openConnection();
+			site.connect();
+			Scanner f = new Scanner(site.getInputStream());
+			website = (f.useDelimiter( "\\Z" ).next().toLowerCase());
 			f.close();
 		}
 		// Error: The given URL is not a proper URL address
@@ -52,5 +57,8 @@ public class Scraper  {
 			System.out.println(sw.toString());
 			throw new IOException("A connection could not be established with \"" + URL + "\"");
 		}
+		
+		long endTime = System.nanoTime();
+		System.out.println("Scrape time: " + ((endTime - startTime)/1000000) + " ms");
 	}
 }
