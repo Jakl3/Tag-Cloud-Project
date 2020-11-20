@@ -13,23 +13,18 @@ public class Main extends JFrame {
 	
 	private static Data site;
 	private static Display disp;
-	public static final int WIDTH = 1200, HEIGHT = 1000;
+	public static final int WIDTH = 1200, HEIGHT = 950;
 	
 	public Main() {
 		super("Tag Cloud Project - Jack Le & Nathan Nguyen");
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(WIDTH,HEIGHT);
+		setSize(WIDTH+20,HEIGHT+50);
 		setBackground(Color.BLACK);
 		getContentPane().add(disp);
-		
+		setResizable(false);
 		setVisible(true);
 		setLocationRelativeTo(null);
-		
-		
-		
-		//System.out.println("size: " + getContentPane().getSize().toString());
-		//System.out.println("height: " + getContentPane().getHeight());
 		
 	}
 		
