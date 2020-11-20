@@ -1,17 +1,18 @@
-import javax.swing.*;
-import java.awt.*;
-import java.util.*;
-import java.awt.event.*;
-import java.io.*;
-import java.awt.image.*;
-import javax.imageio.*;
+import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.util.Map;
+import java.util.TreeMap;
+
+import javax.swing.JFrame;
+@SuppressWarnings("serial")
 
 public class Main extends JFrame {
 	
-	static Data site;
-	static Display disp;
-	static final int WIDTH = 1200, HEIGHT = 1000;
-	static BufferedImage image;
+	private static Data site;
+	private static Display disp;
+	public static final int WIDTH = 1200, HEIGHT = 1000;
 	
 	public Main() {
 		super("Tag Cloud Project - Jack Le & Nathan Nguyen");
@@ -19,7 +20,6 @@ public class Main extends JFrame {
 		setSize(WIDTH,HEIGHT);
 		setBackground(Color.BLACK);
 		getContentPane().add(disp);
-		
 		
 		setVisible(true);
 		setLocationRelativeTo(null);
@@ -31,26 +31,11 @@ public class Main extends JFrame {
 			}
 		});
 		
-		// Output into an image
-		BufferedImage bi = new BufferedImage ( disp.getWidth (), disp.getHeight (), BufferedImage.TYPE_INT_ARGB );
-        Graphics2D g2d = bi.createGraphics ();
-        disp.paintAll ( g2d );
-        g2d.dispose ();
-
-        try
-        {
-            ImageIO.write ( bi, "png", new File ( "image.png" ) );
-        }
-        catch ( IOException e )
-        {
-            e.printStackTrace ();
-        }
-		
 		System.out.println("size: " + getContentPane().getSize().toString());
 		System.out.println("height: " + getContentPane().getHeight());
 		
 	}
-	
+		
 	public static void main(String[] args) throws Exception {
 		/*Scanner kb = new Scanner(System.in);
 		System.out.println("What website would you like to make a tag cloud out of?");
