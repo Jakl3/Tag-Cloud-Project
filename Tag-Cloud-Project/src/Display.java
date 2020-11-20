@@ -15,14 +15,17 @@ import javax.swing.JPanel;
 /*
  * Display.java - Extends JPanel. Draws the words after receiving data from the
  * Data class and arranges them in the tag cloud pattern.
+ * @author Nathan Nguyen and Jack Le
  */
 public class Display extends JPanel  {
 	
+	//instance variables
 	private final Color background = Color.BLACK;
 	private ArrayList<Word> words;
 	private double SCALE;
 	private static final int centerX = Main.WIDTH/2, centerY = Main.HEIGHT/2;
 	
+	//constructor - calculates the scale value, creates new words from passed in data
 	public Display(int max, Map<String,Integer> w) {
 		setBackground(background);	
 		words = new ArrayList<Word>();
@@ -39,6 +42,7 @@ public class Display extends JPanel  {
 		System.out.println("scale: " + SCALE);
 	}
 	
+	//draws the words form the list of words, and arranges them in the tag cloud pattern
 	public void paint(Graphics w) {
 		long startTime = System.nanoTime();
 		ArrayList<Word> drawnWords = new ArrayList<>();
