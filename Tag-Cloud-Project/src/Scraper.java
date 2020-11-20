@@ -14,6 +14,7 @@ public class Scraper  {
 	// Instance Variables
 	private String URL;
 	private String website;
+	private long time;
 	
 	// Constructor
 	public Scraper(String url) throws Exception {
@@ -44,21 +45,15 @@ public class Scraper  {
 		}
 		// Error: The given URL is not a proper URL address
 		catch (MalformedURLException e) {
-			StringWriter sw = new StringWriter();
-			e.printStackTrace(new PrintWriter(sw));
-			System.out.println(sw.toString());
 			throw new MalformedURLException("\"" + URL + "\"" + " is not a proper URL address");
 		}
 		// Error: A connection could not be established with the website
 		catch (IOException e) {
-			StringWriter sw = new StringWriter();
-			e.printStackTrace(new PrintWriter(sw));
-			System.out.println(sw.toString());
 			throw new IOException("A connection could not be established with \"" + URL + "\"");
 		}
 		
 		long endTime = System.nanoTime();
-		System.out.println("Time to scrape HTML: " + ((endTime - startTime)/1000000) + " ms");
+		time = (endTime - startTime)/1000000;
 	}
 
 	// Scrapes the website and stores the HTML as a string
@@ -68,6 +63,9 @@ public class Scraper  {
 		f.close();
 	}
 	
+	public String getTime() {
+		return("Time to scrape HTML: " + time + " ms");
+	}
 	// Returns the string storing the HTML of the website
 	public String getWebsite() {
 		return website;

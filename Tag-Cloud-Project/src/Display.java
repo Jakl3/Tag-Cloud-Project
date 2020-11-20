@@ -18,7 +18,6 @@ public class Display extends JPanel  {
 	private static final int centerX = Main.WIDTH/2, centerY = Main.HEIGHT/2;
 	private ArrayList<Word> words;
 	private double SCALE;
-	private int cnt;
 	
 	/**
 	 * Constructor - receives the Map of words and uses that
@@ -31,7 +30,6 @@ public class Display extends JPanel  {
 		// Sets up the window and instantiates variables
 		setBackground(background);	
 		words = new ArrayList<Word>();
-		cnt = 0;
 		
 		// Calculates the font scaling value
 		double count = 0,avg = 0; 
@@ -41,9 +39,10 @@ public class Display extends JPanel  {
 		}
 		avg/=count;
 		SCALE = ((double)avg/100.0);
-		
-		System.out.println("Number of words included in Tag Cloud: " + words.size());
-		System.out.println("Font Scaling: " + SCALE);
+	}
+	
+	public String getNumWords() {
+		return("Number of words included in Tag Cloud: " + words.size());
 	}
 	
 	/**
@@ -143,9 +142,8 @@ public class Display extends JPanel  {
 			w.drawString(word.getWord(), finX+(int)(Math.sqrt(width)/3), placeY - (height - bounds.height)/2);
 		}
 		
-		cnt++;
 		long endTime = System.nanoTime();
-		System.out.println("Time to paint Tag Cloud " + cnt + ": " + ((endTime - startTime)/1000000) + " ms");
+		System.out.println("Time to paint Tag Cloud: " + ((endTime - startTime)/1000000) + " ms");
 	}
 	
 	/**

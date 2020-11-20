@@ -44,12 +44,15 @@ public class Main extends JFrame {
 		System.out.println("Press \"Enter\" to use the default website");
 		String input = kb.nextLine();
 		String url = input.equals("") ? defaultWebsite : input;
-		System.out.println("Creating Tag Cloud for \"" + url + "\"\n");
 		
 		// Instantiates the other classes and creates the Tag Cloud
 		Scraper scr = new Scraper(url);
 		site = new Data(scr.getWebsite());	
 		disp = new Display(site.getCloud());
+		System.out.println("Creating Tag Cloud for \"" + url + "\"\n");
+		System.out.println(scr.getTime());
+		System.out.println(site.getTime());
+		System.out.println(disp.getNumWords());
 		new Main();
 		
 		kb.close();

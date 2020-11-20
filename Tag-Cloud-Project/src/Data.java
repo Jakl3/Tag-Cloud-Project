@@ -34,6 +34,7 @@ public class Data {
 	// Instance Variables
 	private List<String> tags;
 	private Map<String,Integer> cloud;
+	private long time;
 	
 	// Constructor
 	public Data(String website) {
@@ -46,7 +47,11 @@ public class Data {
 		cloud = sortByValue(cloud);
 		
 		long endTime = System.nanoTime();
-		System.out.println("Time to parse data: " + ((endTime - startTime)/1000000) + " ms");
+		time = (endTime - startTime)/1000000;
+	}
+	
+	public String getTime() {
+		return("Time to parse data: " + time + " ms");
 	}
 	
 	// Returns the list of words and their associated tag
