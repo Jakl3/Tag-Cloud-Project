@@ -6,6 +6,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
 
+import javax.net.ssl.HttpsURLConnection;
+
 /**
  * Establishes a connection with the website of a given
  * URL. It then reads in the entire HTML of that website
@@ -33,10 +35,14 @@ public class Scraper  {
 		try {
 			URL url = new URL(URL);
 			URLConnection site = url.openConnection();
+			site.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) "
+					+ "AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
 			site.connect();
 			Scanner f = new Scanner(site.getInputStream());
 			website = (f.useDelimiter( "\\Z" ).next().toLowerCase());
 			f.close();
+			
+			
 		}
 		// Error: The given URL is not a proper URL address
 		catch (MalformedURLException e) {

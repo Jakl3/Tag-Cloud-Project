@@ -1,8 +1,6 @@
 import java.awt.Color;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.PrintWriter;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -34,14 +32,17 @@ public class Main extends JFrame {
 		String url = kb.nextLine();*/
 		//String url = "https://www.espn.com/";
 		//String url = "https://www.xvideos.com/";
-		String url = "https://gensh.in/";
+		String url = "https://www.cfisd.net/en";
 		//String url = "https://www.pornhub.com/";
+		PrintWriter out = new PrintWriter(new File("dab.txt"));
 		System.out.println(url);
 		//String url = "fsafasf";
 		Scraper scr = new Scraper(url);
 		String s = scr.getWebsite();
-		//System.out.println(s);
+		out.println(s);
 		site = new Data(s);	
+		
+		out.flush();
 		
 		Map<String,Integer> tester = new TreeMap<>();
 		tester.put("fsadfsaf", 10);

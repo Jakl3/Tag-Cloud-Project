@@ -83,7 +83,7 @@ public class Data {
 	    		w = m.group("word2");
 	    	}
 	    		    	
-	    	w = w.replaceAll("\n","").replaceAll("\\s+"," ");
+	    	w = w.replaceAll("\n","").replaceAll("\\s+"," ").replaceAll("&.*?;","");
 	    	
 	    	getTags(w);
 	    	
