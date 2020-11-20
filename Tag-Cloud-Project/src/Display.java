@@ -1,10 +1,17 @@
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.font.FontRenderContext;
 import java.awt.font.GlyphVector;
-import java.util.*;
-import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Map;
 
+import javax.swing.JPanel;
 @SuppressWarnings("serial")
+
 public class Display extends JPanel  {
 	
 	private final Color background = Color.BLACK;

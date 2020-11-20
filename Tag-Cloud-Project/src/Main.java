@@ -1,6 +1,4 @@
 import java.awt.Color;
-import java.io.File;
-import java.io.PrintWriter;
 import java.util.Map;
 import java.util.TreeMap;
 

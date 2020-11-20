@@ -6,8 +6,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
 
-import javax.net.ssl.HttpsURLConnection;
-
 /**
  * Establishes a connection with the website of a given
  * URL. It then reads in the entire HTML of that website
