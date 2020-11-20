@@ -53,12 +53,7 @@ public class Data {
 		cloud = sortByValue(cloud);
 		
 		long endTime = System.nanoTime();
-		System.out.println("Data time: " + ((endTime - startTime)/1000000) + " ms");
-	}
-	
-	// Returns the maximum weight of all words included in the Tag Cloud
-	public int getMax() {
-		return Collections.max(cloud.values());
+		System.out.println("Time to parse data: " + ((endTime - startTime)/1000000) + " ms");
 	}
 	
 	// Returns the list of words and their associated tag
@@ -81,10 +76,9 @@ public class Data {
 	    	if(tag==null || w==null) {
 	    		tag = m.group("capture2");
 	    		w = m.group("word2");
-	    	}
-	    		    	
+	    	}  	
 	    	w = w.replaceAll("\n","").replaceAll("\\s+"," ").replaceAll("&.*?;","");
-	    	
+
 	    	getTags(w);
 	    	
 	    	w = w.replaceAll("<.*?>", "").replaceAll("[^A-Za-z -_]", "").replaceAll("\\s+", " ");

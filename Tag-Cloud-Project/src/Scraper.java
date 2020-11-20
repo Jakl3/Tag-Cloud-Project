@@ -58,7 +58,7 @@ public class Scraper  {
 		}
 		
 		long endTime = System.nanoTime();
-		System.out.println("Scrape time: " + ((endTime - startTime)/1000000) + " ms");
+		System.out.println("Time to scrape HTML: " + ((endTime - startTime)/1000000) + " ms");
 	}
 	
 	// Returns the string storing the HTML of the website
