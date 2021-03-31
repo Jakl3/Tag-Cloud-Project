@@ -6,7 +6,7 @@ This project scrapes the HTML of any website given and generates a word cloud ba
 .
 ├── Tag-Cloud-Project                 # Main project files
 │   ├── src                           # Source
-│   │   ├── Data.java                 # Creates a map containing a word cloud based on HTML from Scraper.java
+│   │   ├── Data.java                 # Creates a map containing based on HTML from Scraper.java
 │   │   ├── Display.java              # Calculates optimal positions and creates a word cloud
 │   │   ├── Main.java                 # Runner
 │   │   ├── Scraper.java              # Takes in a URL as input and scrapes its HTML
