@@ -17,6 +17,7 @@ This project scrapes the HTML of any website given and generates a word cloud ba
 ```
 ## Console
 This is what console input looks like.
+
 ![Console image](images/console.png?raw=true "Image")
 
 # Demonstrations
