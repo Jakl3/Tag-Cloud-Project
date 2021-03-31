@@ -15,10 +15,17 @@ This project scrapes the HTML of any website given and generates a word cloud ba
 ├── images                            # Images for demonstration
 └── README.md                         # ReadMe
 ```
+## Console
+This is what console input looks like.
+![Console image](images/console.png?raw=true "Image")
 
 # Demonstrations
 ## CFISD
 This is the word cloud generated when the input is the [CFISD Website](https://www.cfisd.net/en).
-![Alt text](images/cfisd.png?raw=true "Image")
+![CFISD Word Cloud](images/cfisd.png?raw=true "Image")
+
+## UH
+This is the word cloud generated when the input is the [University of Houston Website](https://uh.edu/).
+![UH Word Cloud](images/cfisd.png?raw=true "Image")
 
 
