@@ -1,4 +1,4 @@
-# Guitar Hero
+# Tag Cloud
 This project scrapes the HTML of any website given and generates a word cloud based on its contents. The sizing of each word is determined by the tag(s) that the word is enclosed by, as well as the number of times it appears on the website. The word cloud is optimized to prevent any overlapping of words.
 
 ## Directory
