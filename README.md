@@ -4,7 +4,7 @@ This project scrapes the HTML of any website given and generates a word cloud ba
 ## Directory
 ```
 .
-├── GuitarHero                        # Main project files
+├── Tag-Cloud-Project                 # Main project files
 │   ├── src                           # Source
 │   │   ├── Data.java                 # Creates a map containing a word cloud based on HTML from Scraper.java
 │   │   ├── Display.java              # Calculates optimal positions and creates a word cloud
@@ -23,10 +23,12 @@ This is what console input looks like.
 # Demonstrations
 ## CFISD
 This is the word cloud generated when the input is the [CFISD Website](https://www.cfisd.net/en).
+
 ![CFISD Word Cloud](images/cfisd.png?raw=true "Image")
 
 ## UH
 This is the word cloud generated when the input is the [University of Houston Website](https://uh.edu/).
-![UH Word Cloud](images/cfisd.png?raw=true "Image")
+
+![UH Word Cloud](images/uh.png?raw=true "Image")
 
 
